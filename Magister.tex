@@ -1,0 +1,130 @@
+\documentclass[14pt,a4paper]{article}
+
+\usepackage[cp1251]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage[footnotes,oglav,spisok,boldsect,eqwhole,kursrab,remarks,hyperprint]{project_cp}
+
+\usepackage{hhline}
+%\usepackage{slashbox}
+\usepackage{multirow}
+\usepackage{anyfontsize}
+\usepackage{t1enc}
+
+\usepackage{extsizes}
+\linespread{1.5}
+\parindent=1.25cm
+
+\usepackage{geometry}
+\geometry{left=3cm, right=1cm, top=2cm, bottom=2cm}
+
+\usepackage{comment}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{minipage}{0.05\textwidth}
+	\hspace{-1.4cm}\vspace{0.5cm}\includegraphics[scale=0.1]{emblema}
+\end{minipage}
+\hfill
+\begin{minipage}{0.95\textwidth}
+	\centering
+	\linespread{1.0}
+	\fontsize{11}{14pt}\selectfont
+	\textbf{Министерство образования и науки Российской Федерации \\
+	Федеральное государственное бюджетное образовательное учреждение\\высшего профессионального образования\\%
+	<<Московский\ государственный\ технический\ университет\\ имени\ Н.\,Э.\,Баумана\\(национальный исследовательский университет)>>\\(МГТУ им. Н.\,Э.\,Баумана)}\\[3mm]
+\end{minipage}
+\hrule height .7mm
+
+\bigskip
+
+\noindentФАКУЛЬТЕТ <<Фундаментальные науки>> \\
+КАФЕДРА <<Прикладная математика>>
+
+\bigskip
+
+\begin{center}
+	\begingroup
+	\fontsize{20pt}{20pt}\selectfont
+	\textbf{РАСЧЁТНО-ПОЯСНИТЕЛЬНАЯ ЗАПИСКА} \\ 
+	\fontsize{16pt}{20pt}\selectfont
+	\textbf{\textit{К~ВЫПУСКНОЙ~КВАЛИФИКАЦИОННОЙ~РАБОТЕ}}\\ 
+	\textbf{\textit{НА ТЕМУ:}}
+	
+	\medskip
+	\fontsize{16pt}{20pt}\selectfont \textbf{\textit{\underline{РАЗРАБОТКА МАТЕМАТИЧЕСКИХ МОДЕЛЕЙ} \underline{НЕЛОКАЛЬНОЙ УПРУГОСТИ И ИХ} \underline{ЧИСЛЕННОЕ РЕШЕНИЕ}}}
+	\endgroup
+\end{center}
+
+\bigskip
+
+\noindent
+\begin{tabular}{lp{6em}cl}
+	Студент группы ФН2-42М & & \hspace{3.5cm}                                & А.А. Соколов\\ \cline{3-3}
+	                      & & \fontsize{8pt}{8pt}\selectfont(Подпись, дата) &\\
+	Руководитель ВКР      & & \hspace{3.5cm}                                & Г.Н. Кувыркин\\ \cline{3-3}
+	                      & & \fontsize{8pt}{8pt}\selectfont(Подпись, дата) &\\
+	Нормоконтролер        & & \hspace{3.5cm}                                & М.М. Лукашин\\ \cline{3-3}
+	                      & & \fontsize{8pt}{8pt}\selectfont(Подпись, дата) &\\
+\end{tabular}
+
+\vspace*{\fill}
+
+\begin{center}
+	2021 г.
+\end{center}
+
+
+
+\newpage
+
+
+
+\section{Основные соотношения}
+
+\subsection{Выбор функций нелокального влияния}
+
+\vspace{2em}
+
+В данной постановке задачи REF никак не конкретизируется геометрия области нелокального влияния $S'(\boldsymbol{x})$ и уж тем более сама функция нелокального влияния $\varphi$. Чаще всего в расчётах используют функцию нормального распределения Гаусса, а зону нелокального влияния аппроксимируют по првилу трёх сигм, но полученные при такой аппроксимации зоны получаются весьма большими, что накладывает серьёзные требования на объёмы используемой оперативной памяти. Вместе с тем, вычисление экспонент является весьма затратным с вычислительной точки зрения, поэтому предлагается использовать весьма широкий класс полиномиальных функций нелокального влияния с фиксированными областями нелокального влияния $S'(\boldsymbol{x})$, которые можно представить в виде
+\begin{gather}
+	\label{phi}
+	\varphi(\boldsymbol{x}, \boldsymbol{x}') =
+	\begin{cases}
+		A (1 - \rho(\boldsymbol{x}, \boldsymbol{x}')^p )^q, & \rho(\boldsymbol{x}, \boldsymbol{x}') \leqslant 1, \\
+		0, & \rho(\boldsymbol{x}, \boldsymbol{x}') > 1
+	\end{cases}
+\end{gather}
+где $\rho$ --- метрическая функция, которую в общем случае можно определить следующим образом
+\begin{gather*}
+	\rho(\boldsymbol{x}, \boldsymbol{x}') = \sqrt[n]{
+		\left| \dfrac{x_i - x_i'}{r_i} \right|^n	+
+		\left| \dfrac{x_2 - x_2'}{r_2} \right|^n
+	}.
+\end{gather*}
+Тогда нормировочный множитель $A$ примет значение
+\begin{gather*}
+	A = \dfrac{pn}{4 r_1 r_2 \text{B}(1/n, 1/n) \text{B}(2/p, q+1)},
+\end{gather*}
+где $r_1, r_2 > 0$ --- радиусы нелокального влияния вдоль каждой оси; $n > 0$ --- параметр лебегова пространства; $p, q > 0$ --- параметры плотности распределения влияния; B --- бета-функция Эйлера.
+
+Предполагается, что изучаемые тела изотропны, поэтому будем считать, что область нелокального влияния представляет из себя круг, то есть $r_1 = r_2 = r$, а параметр $n = 2$. Что касается параметров плотности распределения влияния, то стоит отметить, что при увеличении параметра $p$ распределение влияния становится более равномерным и стремится к константе, что в теории должно приводить к увеличению отклонения от классического закона. При увеличении параметра $q$ распределение влияния концентрируется в центре области и стремится к дельта-функции Дирака, которая даст нам классический закон Гука. На рис. 1 и 2 представлены примеры функций влияния в разрезе по оси симметрии при различных параметрах $p$ и $q$. Для наглядности введём обозначение $\varphi_{p,q}$, которое даст понять какие параметры были выбраны.
+
+\begin{center}\begin{center}
+	\begin{tabular}{cc}
+		\includegraphics[width=0.47\textwidth]{pics/PhiVariableP.eps} &
+		\includegraphics[width=0.47\textwidth]{pics/PhiVariableQ.eps} \\
+		Рис. 1 Портреты функций влияния & 
+		Рис. 2 Портреты функций влияния \\
+		при вариации $p$ &
+		при вариации $q$
+	\end{tabular}
+\end{center}
+\end{center}
+
+\end{document}
