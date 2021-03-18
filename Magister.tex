@@ -113,19 +113,19 @@
 Дано двумерное евклидово пространство $\mathbb{R}^2$ с произвольно выбранной прямоугольной декартовой системой координат $O\text{x}_1 \text{x}_2$, в которой положение точки фиксировано радиус-вектором $\boldsymbol{x} = x_i \boldsymbol{e}_i$, где $\boldsymbol{e}_i$, $i = \overline{1,2}$ --- единичные орты координатных осей; $x_i$, $i = \overline{1,2}$ --- компоненты вектора $\boldsymbol{x}$. В произвольной замкнутой области $S \subset \mathbb{R}^2$ с кусочно-гладкой границей $\partial S$ уравнение равновесия сплошной среды имеет вид \cite{MSS}
 \begin{gather}
 	\label{EquilibriumEquation}
-	\nabla_{\boldsymbol{x}} \cdot \hat{\boldsymbol{\sigma}} + \boldsymbol{b} = \boldsymbol{0},
+	\nabla_{\boldsymbol{x}} \cdot \boldsymbol{\hat{\sigma}} + \boldsymbol{b} = \boldsymbol{0},
 \end{gather}
-где $\nabla_{\boldsymbol{x}} = \partial/\partial x_i \boldsymbol{e}_i$, $i = \overline{1, 2}$ --- дифференциальный оператор набла; $\boldsymbol{b} = b_i \boldsymbol{e}_i$, $i = \overline{1, 2}$ --- вектор объёмных сил; $\hat{\boldsymbol{\sigma}} = \sigma_{ij} \boldsymbol{e}_i \otimes \boldsymbol{e}_j$, $i,j = \overline{1, 2}$ --- тензор напряжений, который определяется следующим образом
+где $\nabla_{\boldsymbol{x}} = \partial/\partial x_i \boldsymbol{e}_i$, $i = \overline{1, 2}$ --- дифференциальный оператор набла; $\boldsymbol{b} = b_i \boldsymbol{e}_i$, $i = \overline{1, 2}$ --- вектор объёмных сил; $\boldsymbol{\hat{\sigma}} = \sigma_{ij} \boldsymbol{e}_i \otimes \boldsymbol{e}_j$, $i,j = \overline{1, 2}$ --- тензор напряжений, который определяется следующим образом
 \begin{gather}
 	\label{DefineSigma}
-	\hat{\boldsymbol{\sigma}} =
-	p_1 \hat{\boldsymbol{C}} \cdot \cdot \hat{\boldsymbol{\varepsilon}} +
+	\boldsymbol{\hat{\sigma}} =
+	p_1 \boldsymbol{\hat{C}} \cdot \cdot \boldsymbol{\hat{\varepsilon}} +
 	p_2 \iint\limits_{S'(\boldsymbol{x}) \cap S}
-	\varphi(\boldsymbol{x}, \boldsymbol{x}') \hat{\boldsymbol{C}} \cdot \cdot \hat{\boldsymbol{\varepsilon}} dS'(\boldsymbol{x}),
+	\varphi(\boldsymbol{x}, \boldsymbol{x}') \boldsymbol{\hat{C}} \cdot \cdot \boldsymbol{\hat{\varepsilon}} dS'(\boldsymbol{x}),
 \end{gather}
-где $\hat{\boldsymbol{\varepsilon}} = \varepsilon_{ij} \boldsymbol{e}_i \otimes \boldsymbol{e}_j$, $i,j = \overline{1, 2}$ --- тензор упругой деформации; $\hat{\boldsymbol{C}} = C_{ijkl} \boldsymbol{e}_i \otimes \boldsymbol{e}_j \otimes \boldsymbol{e}_k \otimes \boldsymbol{e}_l$, $i, j, k, l = \overline{1, 2}$ --- тензор коэффициентов упругости; $p_1 > 0$ и $p_2 \geqslant 0$ --- весовые доли, такие, что $p_1 + p_2 = 1$; $\varphi$ --- функция нелокального влияния, некоторая нормированная положительная функция в области $S'(\boldsymbol{x})$; $S'(\boldsymbol{x})$ --- область нелокального влияния; $\boldsymbol{x'} \in S'(\boldsymbol{x})$
+где $\boldsymbol{\hat{\varepsilon}} = \varepsilon_{ij} \boldsymbol{e}_i \otimes \boldsymbol{e}_j$, $i,j = \overline{1, 2}$ --- тензор упругой деформации; $\boldsymbol{\hat{C}} = C_{ijkl} \boldsymbol{e}_i \otimes \boldsymbol{e}_j \otimes \boldsymbol{e}_k \otimes \boldsymbol{e}_l$, $i, j, k, l = \overline{1, 2}$ --- тензор коэффициентов упругости; $p_1 > 0$ и $p_2 \geqslant 0$ --- весовые доли, такие, что $p_1 + p_2 = 1$; $\varphi$ --- функция нелокального влияния, некоторая нормированная положительная функция в области $S'(\boldsymbol{x})$; $S'(\boldsymbol{x})$ --- область нелокального влияния; $\boldsymbol{x'} \in S'(\boldsymbol{x})$
 
-Будем считать, что деформации малы, поэтому для определения компонентов тензора деформации $\hat{\boldsymbol{\varepsilon}}$ воспользуемся соотношением Коши \cite{MSS}
+Будем считать, что деформации малы, поэтому для определения компонентов тензора деформации $\boldsymbol{\hat{\varepsilon}}$ воспользуемся соотношением Коши \cite{MSS}
 \begin{gather}
 	\label{DefineStrains}
 	\varepsilon_{ij} = \dfrac{1}{2} \left( 
@@ -136,7 +136,7 @@
 \end{gather}
 где $u_i$, $i = \overline{1, 2}$ --- компоненты вектора перемещений $\boldsymbol{u}$.
 
-В случае линейно упругого изотропного тела компоненты тензора упругости $\hat{\boldsymbol{C}}$ определяются следующим образом \cite{MSS}
+В случае линейно упругого изотропного тела компоненты тензора упругости $\boldsymbol{\hat{C}}$ определяются следующим образом \cite{MSS}
 \begin{gather*}
 	C_{i, j, k, l} =
 	\lambda \delta_{ij} \delta_{kl} +
@@ -152,7 +152,7 @@
 Будем рассматривать граничные условия первого и второго родов, также именуемые кинематическими и силовыми соответственно \cite{MSS}
 \begin{gather*}
 	\boldsymbol{u}|_{\Gamma_1} = \boldsymbol{d}(\boldsymbol{x}), \quad
-	\hat{\boldsymbol{\sigma}} \cdot \boldsymbol{n}|_{\Gamma_2} = \boldsymbol{p}(\boldsymbol{x}),
+	\boldsymbol{\hat{\sigma}} \cdot \boldsymbol{n}|_{\Gamma_2} = \boldsymbol{p}(\boldsymbol{x}),
 \end{gather*}
 где $\Gamma_1, \Gamma_2 \subset \partial S$; $\Gamma_1 \cup \Gamma_2 = \emptyset$; $\boldsymbol{d}(\boldsymbol{x}) = d_i(\boldsymbol{x}) \boldsymbol{e}_i$ и $\boldsymbol{p}(\boldsymbol{x}) = p_i(\boldsymbol{x}) \boldsymbol{e}_i$, $i = \overline{1, 2}$ --- некоторые функции, задающие перемещение и давление на границах соответственно.
 
@@ -198,51 +198,52 @@
 
 \subsection{Построение численной схемы решения на основе метода конечных элементов}
 
-В качестве численного метода решения уравнения (\ref{EquilibriumEquation}) выберем метод конечных элементов с использованием изопараметрических конечных элементов \cite{Zienkiewicz}, \cite{Bathe}. Для этого на области $S$ введём сетку конечно-элементной модели $S_h$. Каждый элемент $(e) \in S_h$ содержит в себе наборы узлов $\left\{\boldsymbol{x}_i^{(e)}\right\}_{i=1}^{M^{(e)}}$ и базисных функций $\left\{N_i^{(e)}\right\}_{i=1}^{M^{(e)}}$, таких что $N_i^{(e)}\left(\boldsymbol{x}_j^{(e)}\right) = \delta_{ij}$ и $\sum\limits_{i=1}^{M^{(e)}} N_i^{(e)}(\boldsymbol{x}) = 1$, $\forall \boldsymbol{x} \in S^{(e)}$, где $\delta_{ij}$ --- дельта-функция Кронекера, $S^{(e)}$ --- область элемента $(e)$. Для каждого элемента $(e)$ введём локальную систему координат $O\xi_1^{(e)}\xi_2^{(e)}$. Отображение из локальной системы координат $O\xi_1^{(e)}\xi_2^{(e)}$ в глобальную $O\text{x}_1\text{x}_2$ будем строить следующим образом
+В качестве численного метода решения уравнения (\ref{EquilibriumEquation}) выберем метод конечных элементов с использованием изопараметрических конечных элементов \cite{Zienkiewicz}, \cite{Bathe}. Для этого на области $S$ введём сетку конечно-элементной модели $S_h$. Каждый элемент $(e) \in S_h$ содержит в себе наборы узлов $\left\{\boldsymbol{x}_i^{(e)}\right\}_{i \in I^{(e)}}$ и базисных функций $\left\{N_i^{(e)}\right\}_{i \in I^{(e)}}$ таких, что $N_i^{(e)}\left(\boldsymbol{x}_j^{(e)}\right) = \delta_{ij}$ и $\sum\limits_{i \in I^{(e)}} N_i^{(e)}(\boldsymbol{x}) = 1$, $\forall \boldsymbol{x} \in S^{(e)}$, где $I^{(e)}$ --- набор индексов узлов элемента $(e)$, $\delta_{ij}$ --- дельта-функция Кронекера, $S^{(e)}$ --- область элемента $(e)$. Для каждого элемента $(e)$ введём локальную систему координат $O\xi_1^{(e)}\xi_2^{(e)}$. Отображение из локальной системы координат $O\xi_1^{(e)}\xi_2^{(e)}$ в глобальную $O\text{x}_1\text{x}_2$ будем строить следующим образом
 \begin{gather*}
 	\boldsymbol{x}\left( \boldsymbol{\xi}^{(e)} \right) =
 	N_i^{(e)} \left( \boldsymbol{\xi}^{(e)} \right) \boldsymbol{x}_i^{(e)}, \quad
-	i = \overline{1, M^{(e)}}, \ (e) \in S_h,
+	i \in I^{(e)}, \ (e) \in S_h,
 \end{gather*}
 где $\boldsymbol{x}_i^{(e)}$ --- значение глобальных координат в узлах элемента $(e)$. Тогда матрицу Якоби перехода из локальной системы координат в глобальную аппроксимируем следующим образом
 \begin{gather*}
+	\boldsymbol{\hat{J}} = 
 	\left( \dfrac{\partial \boldsymbol{\xi}^{(e)}}{\partial \boldsymbol{x}} \right) =
 	\left( \dfrac{\partial \boldsymbol{x}}{\partial \boldsymbol{\xi}^{(e)}} \right)^{-1} \approx
 	\left( \boldsymbol{x}_i^{(e)} \dfrac{\partial N_i^{(e)}}{\partial \boldsymbol{\xi}^{(e)}} \right)^{-1}, \quad
-	i = \overline{1, M^{(e)}}, \ (e) \in S_h.
+	i \in I^{(e)}, \ (e) \in S_h.
 \end{gather*}
 
 Домножим уравнение (\ref{EquilibriumEquation}) на функцию формы $N_n^{(e)}$ и проинтегрируем по области $S$
 \begin{gather*}
-	\iint\limits_S N_n^{(e)} (\nabla_{\boldsymbol{x}} \cdot \hat{\boldsymbol{\sigma}} + \boldsymbol{b}) dS = \boldsymbol{0}, \quad
-	n = \overline{1, M^{(e)}}, \ (e) \in S_h.
+	\iint\limits_S N_n^{(e)} (\nabla_{\boldsymbol{x}} \cdot \boldsymbol{\hat{\sigma}} + \boldsymbol{b}) dS = \boldsymbol{0}, \quad
+	n \in I^{(e)}, \ (e) \in S_h.
 \end{gather*}
 Проинтегрируем первое слагаемое по частям, тогда по формуле Грина получим
 \begin{gather*}
-	\iint\limits_S (\nabla_{\boldsymbol{x}} N_n^{(e)}) \cdot \hat{\boldsymbol{\sigma}} dS -
+	\iint\limits_S (\nabla_{\boldsymbol{x}} N_n^{(e)}) \cdot \boldsymbol{\hat{\sigma}} dS -
 	\oint\limits_{\Gamma_2} N_n^{(e)} \boldsymbol{p} d\Gamma +
 	\iint\limits_S N_n^{(e)} \boldsymbol{b} dS = \boldsymbol{0}, \quad
-	n = \overline{1, M^{(e)}}, \ (e) \in S_h.
+	n \in I^{(e)}, \ (e) \in S_h.
 \end{gather*}
-На место $\hat{\boldsymbol{\sigma}}$ подставим соотношение (\ref{DefineSigma})
+На место $\boldsymbol{\hat{\sigma}}$ подставим соотношение (\ref{DefineSigma})
 \begin{multline*}
 	p_1 \iint\limits_S 
 	\left( \nabla_{\boldsymbol{x}} N_n^{(e)} \right)
 	\cdot
-	\left( \hat{\boldsymbol{C}} \cdot \cdot \hat{\boldsymbol{\varepsilon}} \right) dS
+	\left( \boldsymbol{\hat{C}} \cdot \cdot \boldsymbol{\hat{\varepsilon}} \right) dS
 	+
 	p_2 \iint\limits_S
 	\left( \nabla_{\boldsymbol{x}} N_n^{(e)} \right)
 	\cdot
 	\iint\limits_{S'(\boldsymbol{x}) \cap S}
-	\varphi(\boldsymbol{x}, \boldsymbol{x}') \hat{\boldsymbol{C}} \cdot \cdot \hat{\boldsymbol{\varepsilon}}
+	\varphi(\boldsymbol{x}, \boldsymbol{x}') \boldsymbol{\hat{C}} \cdot \cdot \boldsymbol{\hat{\varepsilon}}
 	dS'(\boldsymbol{x})
 	dS 
 	- \\ -
 	\oint\limits_{\Gamma_2} N_n^{(e)} \boldsymbol{p} d\Gamma
 	+
 	\iint\limits_S N_n^{(e)} \boldsymbol{b} dS = 0, \quad
-	n = \overline{1, M^{(e)}}, \ (e) \in S_h.
+	n \in I^{(e)}, \ (e) \in S_h.
 \end{multline*}
 Перейдём к индексной форме записи
 \begin{multline*}
@@ -258,9 +259,9 @@
 	\oint\limits_{\Gamma_2} N_n^{(e)} p_i d\Gamma
 	+
 	\iint\limits_S N_n^{(e)} b_i dS = \boldsymbol{0}, \quad
-	i, j, k, l = \overline{1, 2}, \ n = \overline{1, M^{(e)}}, \ (e) \in S_h.
+	i, j, k, l = \overline{1, 2}, \ n \in I^{(e)}, \ (e) \in S_h.
 \end{multline*}
-Воспользуемся соотношением Коши (\ref{DefineStrains}) и заменим перемещения $\boldsymbol{u}$ интерполяционными соотношениями, то есть представим в виде $\boldsymbol{u}(\boldsymbol{x}) \approx \boldsymbol{u}_i^{(e)} N_i^{(e)}(\boldsymbol{x})$, $i = \overline{1, M^{(e)}}$, где $\boldsymbol{u}_i^{(e)}$ -- искомые перемещения в узлах элемента $(e)$. Тогда уравнение принимает вид
+Воспользуемся соотношением Коши (\ref{DefineStrains}) и заменим перемещения $\boldsymbol{u}$ интерполяционными соотношениями, то есть представим в виде $\boldsymbol{u}(\boldsymbol{x}) \approx \boldsymbol{u}_i^{(e)} N_i^{(e)}(\boldsymbol{x})$, $i \in I^{(e)}$, где $\boldsymbol{u}_i^{(e)}$ -- искомые перемещения в узлах элемента $(e)$. Тогда уравнение принимает вид
 \begin{multline*}
 	\dfrac{p_1}{2} \iint\limits_S 
 	\dfrac{\partial N_n^{(e)}}{\partial x_i} C_{ijkl} 
@@ -285,36 +286,138 @@
 	dS'(\boldsymbol{x})
 	dS = \boldsymbol{0},
 	\\
-	i, j, k, l = \overline{1, 2}, \ n,m = \overline{1, M^{(e)}}, \ m' = \overline{1, M^{(e')}} \ (e) \in S_h, (e') \in S_h'^{(e)}, S_h'^{(e)} \subset S_h,
+	i, j, k, l = \overline{1, 2}, \ n,m \in I^{(e)}, \ m' \in I^{(e')}, \ (e) \in S_h, (e') \in S_h', S_h' \subset S_h,
 \end{multline*}
-где $S_h'^{(e)}$ --- аппроксимированная зона нелокального влияния на элементе $(e)$.
-
-\begin{multline*}
-	\dfrac{p_1}{2} \sum\limits_{(e) \in S_h} \sum\limits_{n,m \in I^{(e)}} \sum\limits_{q \in Q^{(e)}}
+где $S_h'$ --- аппроксимированная зона нелокального влияния. Аппроксимируем интегралы конечными суммами и наконец придём к конечному равенству, где происходит ассамблирование матрицы жёсткости и правой части
+\begin{multline}
+	\label{StiffnessMatrix}
+	\dfrac{p_1}{2} 
+	\sum\limits_{(e) \in S_h} \sum\limits_{n,m \in I^{(e)}} \sum\limits_{q \in Q^{(e)}}
 	w_q \dfrac{\partial N_n^{(e)}}{\partial x_i} ( \boldsymbol{x}_q ) C_{ijkl}
 	\left( 
 	u_{lm}^{(e)} \dfrac{\partial N_m^{(e)}}{\partial x_k} ( \boldsymbol{x}_q ) +
 	u_{km}^{(e)} \dfrac{\partial N_m^{(e)}}{\partial x_l} ( \boldsymbol{x}_q ) 
 	\right) J_q
 	+ \\ +
-	\dfrac{p_2}{2} \sum\limits_{(e) \in S_h} \sum\limits_{(e') \in S_h'^{(e)}} \sum\limits_{n \in I^{(e)}}
-	\sum\limits_{m' \in I^{(e')}} \sum\limits_{q \in Q^{(e)}} \sum\limits_{q' \in Q^{(e')}}
-	w_q \dfrac{\partial N_n^{(e)}}{\partial x_i} ( \boldsymbol{x}_q )
+	\dfrac{p_2}{2} 
+	\sum\limits_{(e) \in S_h} \sum\limits_{n \in I^{(e)}} \sum\limits_{q \in Q^{(e)}}
+	w_q \dfrac{\partial N_n^{(e)}}{\partial x_i} (\boldsymbol{x}_q) J_q
+	\sum\limits_{(e') \in S_h'^{(q)}} \sum\limits_{m' \in I^{(e')}} \sum\limits_{q' \in Q^{(e')}}
+	w_{q'} 
 	\varphi(\boldsymbol{x}_q, \boldsymbol{x}_{q'}') C_{ijkl}
 	\times \\ \times
 	\left( 
 	u_{lm'}^{(e')} \dfrac{\partial N_{m'}^{(e')}}{\partial x_k'} ( \boldsymbol{x}_{q'} ) +
 	u_{km'}^{(e')} \dfrac{\partial N_{m'}^{(e')}}{\partial x_l'} ( \boldsymbol{x}_{q'} ) 
-	\right) J_q J_{q'}
+	\right) J_{q'}
 	+
 	\sum\limits_{(e) \in S_h} \sum\limits_{n \in I^{(e)}} \sum\limits_{q \in Q^{(e)}}
 	w_q N_n^{(e)} b_i J_q
 	= \\ =
 	\sum\limits_{(be) \in \Gamma_h} \sum\limits_{n \in I^{(be)}} \sum\limits_{q \in Q^{(be)}}
 	w_q N_n^{(be)} p_i J_q, \quad
-	i, j, k, l = \overline{1, 2}
-\end{multline*}
+	i, j, k, l = \overline{1, 2},
+\end{multline}
+где $Q^{(e)}$ --- набор индексов квадратурных узлов элемента $(e)$; $S_h'^{(q)}$ --- аппроксимированная зона нелокального влияния на квадратурном узле $q$; $\Gamma_h$ --- конечно-элементная модель границы области $S$; $(be)$ --- одномерные элементы заданные на границе; $w_q$ --- квадратурные веса; $J_q = \left|\det{\boldsymbol{\hat{J}}(\boldsymbol{x}_q)}\right|$ --- якобиан вычисленный в квадратурной точке $\boldsymbol{x}_q$.
 
+Вычисление системы (\ref{StiffnessMatrix}) можно упростить записав производные от функций форм в локальной системе координат
+\begin{gather*}
+	\dfrac{\partial N_i^{(e)}}{\partial x_k} =
+	\dfrac{\partial N_i^{(e)}}{\partial \xi_j^{(e)}}
+	\dfrac{\partial \xi_j^{(e)}}{\partial x_k}, \quad
+	j, k = \overline{1, 2}, \ i \in I^{(e)}, \ (e) \in S_h.
+\end{gather*}
+Якобиан на границе аппроксимируем следующим образом
+\begin{gather*}
+	J^{(e)} = \sqrt{
+	\left( x_{1i}^{(e)} \dfrac{\partial N_i^{(e)}}{\partial \xi^{(e)}} \right)^2 +
+	\left( x_{2i}^{(e)} \dfrac{\partial N_i^{(e)}}{\partial \xi^{(e)}} \right)^2	
+	}, \quad
+	i \in I^{(e)}, \ (e) \in \Gamma_h.
+\end{gather*}
+Заметим, что индекс оси $\xi^{(e)}$ не ставится, так как элемент одномерный.
+
+
+
+
+\section{Программная реализация}
+
+\subsection{Аппроксимация зоны нелокального влияния}
+
+Основной проблемой, которая возникает при решении данной задачи, является аппроксимация интегрального слагаемого в (\ref{DefineSigma}), так как в матрицах элементов необходимо учитывать влияние, которое приходится на соседние элементы. Действуя по правила аппроксимации вложенных интегралов мы приходим к тому, что в уравнении (\ref{StiffnessMatrix}) порядок сумм заставляет нас аппроксимировать зону нелокального влияния для каждого квадратурного узла сетки, что не очень практично, так как выполнять поиск ближайших соседей относительно квадратурных узлов может быть весьма затратной процедурой, а хранении индексов элементов, которые попадают в зону влияния, очень дорогим. Более того, такой подход попросту сложно реализовать программно, поэтому предлагается аппроксимировать зону нелокального влияния относительно центров элементов и учитывать в расчётах те элементы центры которых попали в зону влияния. Тогда формулу (\ref{StiffnessMatrix}) можно переписать в виде
+\begin{multline}
+	\label{StiffnessMatrixElementsApprox}
+	\dfrac{p_1}{2} 
+	\sum\limits_{(e) \in S_h} \sum\limits_{n,m \in I^{(e)}} \sum\limits_{q \in Q^{(e)}}
+	w_q \dfrac{\partial N_n^{(e)}}{\partial x_i} ( \boldsymbol{x}_q ) C_{ijkl}
+	\left( 
+	u_{lm}^{(e)} \dfrac{\partial N_m^{(e)}}{\partial x_k} ( \boldsymbol{x}_q ) +
+	u_{km}^{(e)} \dfrac{\partial N_m^{(e)}}{\partial x_l} ( \boldsymbol{x}_q ) 
+	\right) J_q
+	+ \\ +
+	\dfrac{p_2}{2} 
+	\sum\limits_{(e) \in S_h} \sum\limits_{(e') \in S_h'^{(e)}}
+	\sum\limits_{n \in I^{(e)}} \sum\limits_{m' \in I^{(e')}} 
+	\sum\limits_{q \in Q^{(e)}} 
+	w_q \dfrac{\partial N_n^{(e)}}{\partial x_i} ( \boldsymbol{x}_q ) J_q
+	\sum\limits_{q' \in Q^{(e')}}
+	w_{q'} 
+	\varphi(\boldsymbol{x}_q, \boldsymbol{x}_{q'}') C_{ijkl}
+	\times \\ \times
+	\left( 
+	u_{lm'}^{(e')} \dfrac{\partial N_{m'}^{(e')}}{\partial x_k'} ( \boldsymbol{x}_{q'} ) +
+	u_{km'}^{(e')} \dfrac{\partial N_{m'}^{(e')}}{\partial x_l'} ( \boldsymbol{x}_{q'} ) 
+	\right) J_{q'}
+	+
+	\sum\limits_{(e) \in S_h} \sum\limits_{n \in I^{(e)}} \sum\limits_{q \in Q^{(e)}}
+	w_q N_n^{(e)} b_i J_q
+	= \\ =
+	\sum\limits_{(be) \in \Gamma_h} \sum\limits_{n \in I^{(be)}} \sum\limits_{q \in Q^{(be)}}
+	w_q N_n^{(be)} p_i J_q, \quad
+	i, j, k, l = \overline{1, 2},
+\end{multline}
+Для успешного интегрирования, зону аппроксимации лучше всего брать несколько больше, нежели реальная зона нелокального влияния, таким образом возникает шанс того, что все квадратурные узлы, которые попали под зону влияния $S'(\boldsymbol{x})$ будут учтены. Естественно, радиус поиска следует определять исходя из грубости сетки.
+
+\begin{center}
+	\includegraphics[width=0.6\textwidth]{pics/ApproxS.eps} \\
+	Рис. 3 Аппроксимация зоны нелокального влияния
+\end{center}
+
+\subsection{Распараллеливание алгоритма}
+
+Обход сетки, который задаётся порядком суммирования в (\ref{StiffnessMatrixElementsApprox}) не позволяет эффективно использовать возможности параллельных и распределённых систем, поэтому для эффективного распараллеливания алгоритма необходимо делать обход сетки по узлам, что позволит собирать глоабльную матрицу жёсткости построчно и каждый узел кластера сможет собирать свою часть матрицы независимо от остальных.
+\begin{multline}
+	\label{StiffnessMatrixElementsApprox}
+	\dfrac{p_1}{2} 
+	\sum\limits_{n \in S_h} \sum\limits_{(e) \in E^{(n)}} \sum\limits_{m \in I^{(e)}} \sum\limits_{q \in Q^{(e)}}
+	w_q \dfrac{\partial N_n^{(e)}}{\partial x_i} ( \boldsymbol{x}_q ) C_{ijkl}
+	\times \\ \times
+	\left( 
+	u_{lm}^{(e)} \dfrac{\partial N_m^{(e)}}{\partial x_k} ( \boldsymbol{x}_q ) +
+	u_{km}^{(e)} \dfrac{\partial N_m^{(e)}}{\partial x_l} ( \boldsymbol{x}_q ) 
+	\right) J_q
+	+ \\ +
+	\dfrac{p_2}{2} 
+	\sum\limits_{n \in S_h} \sum\limits_{(e) \in E^{(n)}} \sum\limits_{(e') \in S_h'^{(e)}}
+	\sum\limits_{m' \in I^{(e')}} \sum\limits_{q \in Q^{(e)}} 
+	w_q \dfrac{\partial N_n^{(e)}}{\partial x_i} ( \boldsymbol{x}_q ) J_q
+	\sum\limits_{q' \in Q^{(e')}}
+	w_{q'} 
+	\varphi(\boldsymbol{x}_q, \boldsymbol{x}_{q'}') C_{ijkl}
+	\times \\ \times
+	\left( 
+	u_{lm'}^{(e')} \dfrac{\partial N_{m'}^{(e')}}{\partial x_k'} ( \boldsymbol{x}_{q'} ) +
+	u_{km'}^{(e')} \dfrac{\partial N_{m'}^{(e')}}{\partial x_l'} ( \boldsymbol{x}_{q'} ) 
+	\right) J_{q'}
+	+
+	\sum\limits_{n \in S_h} \sum\limits_{(e) \in E^{(n)}} \sum\limits_{q \in Q^{(e)}}
+	w_q N_n^{(e)} b_i J_q
+	= \\ =
+	\sum\limits_{(be) \in \Gamma_h} \sum\limits_{n \in I^{(be)}} \sum\limits_{q \in Q^{(be)}}
+	w_q N_n^{(be)} p_i J_q, \quad
+	i, j, k, l = \overline{1, 2},
+\end{multline}
+$E^{(n)}$ --- набор элементов, которым принадлежит узел $n$. 
 
 
 \newpage
