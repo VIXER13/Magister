@@ -222,7 +222,7 @@ B --- бета-функция Эйлера.
 
 Виды области $S'(\boldsymbol{x})$ при различных параметрах лебегова пространства $n$ проиллюстрированы на рис. \ref{fig:LameEllipse}.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 	\center{\includegraphics[width=0.9\textwidth]{pics/LameEllipse.eps}}
 	\caption{Вид зоны нелокального влияния при $r_1 = 3$, $r_2 = 1$ и различных параметрах $n$}
 	\label{fig:LameEllipse}
@@ -230,13 +230,13 @@ B --- бета-функция Эйлера.
 
 Предполагается, что изучаемые тела изотропны, поэтому будем считать, что область нелокального влияния представляет из себя круг, то есть $r_1 = r_2 = r$, а параметр $n = 2$. Что касается параметров плотности распределения влияния, то стоит отметить, что при увеличении параметра $p$ распределение влияния становится более равномерным и стремится к константе, что в теории должно приводить к увеличению отклонения от классического закона. При увеличении параметра $q$ распределение влияния концентрируется в центре области и стремится к дельта-функции Дирака, которая при подстановке в (\ref{DefineSigma}) даст нам классический закон Гука. На рис. \ref{fig:PhiVarP} и \ref{fig:PhiVarQ} представлены примеры функций влияния в разрезе по оси симметрии при различных параметрах $p$ и $q$. Для простоты и наглядности будем считать параметры $p$ и $q$ целыми и введём обозначение $\varphi_{p,q}$, которое даст понять какие параметры были выбраны.
 
-\begin{figure}[h]
+\begin{figure}
 	\center{\includegraphics[width=0.7\textwidth]{pics/PhiVariableP.eps}}
 	\caption{Портреты функций влияния при вариации $p$}
 	\label{fig:PhiVarP}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}
 	\center{\includegraphics[width=0.7\textwidth]{pics/PhiVariableQ.eps}}
 	\caption{Портреты функций влияния при вариации $q$}
 	\label{fig:PhiVarQ}
@@ -446,7 +446,7 @@ $S^{(e)}$ --- область элемента $(e)$.
 \\
 где $S_h'^{(e)}$ --- зона нелокального влияния аппроксимированная на элементе.
 
-\begin{figure}[h]
+\begin{figure}
 	\center{\includegraphics[width=0.7\textwidth]{pics/ApproxS.eps}}
 	\caption{Аппроксимация зоны нелокального влияния}
 	\label{fig:ApproxS}
@@ -501,9 +501,46 @@ $S^{(e)}$ --- область элемента $(e)$.
 
 Второй вариант балансировки позволяет добиться равномерного распределения объёмов вычислений. Такой вариант балансировки достигается аналогичными методами, но в качестве осредняемого параметра выбирается количество вызовов функции интегрирования.
 
+\begin{figure}
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectStress11VarFx205.eps}}
+	\caption{}
+	\label{fig:LongRectStress11VarFx205}
+\end{figure}
+
+\begin{figure}
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectStress11VarFx200.eps}}
+	\caption{}
+	\label{fig:LongRectStress11VarFx200}
+\end{figure}
+
+\begin{figure}
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectStress11VarR.eps}}
+	\caption{}
+	\label{fig:LongRectStress11VarR}
+\end{figure}
+
+\begin{figure}
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectStress11VarP.eps}}
+	\caption{}
+	\label{fig:LongRectStress11VarP}
+\end{figure}
+
+\begin{figure}
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectSigma12X1.eps}}
+	\caption{}
+	\label{fig:LongRectSigma12X1}
+\end{figure}
+
+\begin{figure}
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectSigma12X2.eps}}
+	\caption{}
+	\label{fig:LongRectSigma12X2}
+\end{figure}
 
 
-\begin{center}
+
+
+\begin{table}
 	\begin{tabular}{|c|c|c|c|c|c|c|}
 		\hline
 		$N$   & $r$  & $M$  & $V$     & $t_1$, с & $t_{16}$, с & $t_1 / t_{16}$ \\
@@ -527,10 +564,10 @@ $S^{(e)}$ --- область элемента $(e)$.
 		40000 & 0.1  & 1143 & 10.2 Гб & 3161     & 222.5       & 14.21 \\
 		\hline
 	\end{tabular} \\
-	Табл. 1. Сравнение последовательного и параллельного режимов работы
-\end{center}
+	\caption{Сравнение последовательного и параллельного режимов работы}
+\end{table}
 
-\begin{center}
+\begin{table}
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 	\hline
 	$N$   & $r$  & $V_1$  & $t_{16}^1$, с & $V_2$  & $t_{16}^2$, с & $V_3$  & $t_{16}^3$, с & $V_4$  & $t_{16}^4$, с \\
@@ -544,10 +581,10 @@ $S^{(e)}$ --- область элемента $(e)$.
 	40000 & 0.1  & 1.9 Гб & 55.41         & 1.9 Гб & 54.80         & 1.9 Гб & 57.47         & 4.5 Гб & 59.91 \\
 	\hline
 	\end{tabular} \\
-	Табл. 2. Распределение объёмов данных и времени выполнения между процессами при балансировке объёмов вычислений
-\end{center}
+	\caption{Распределение объёмов данных и времени выполнения между процессами при балансировке объёмов вычислений}
+\end{table}
 
-\begin{center}
+\begin{table}
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 	\hline
 	$N$   & $r$ & $V_1$   & $t_{16}^1$, с & $V_2$  & $t_{16}^2$, с & $V_3$  & $t_{16}^3$, с & $V_4$  & $t_{16}^4$, с \\
@@ -561,8 +598,8 @@ $S^{(e)}$ --- область элемента $(e)$.
 	40000 & 0.1  & 2.5 Гб & 72.66         & 2.6 Гб & 72.46         & 2.5 Гб & 45.91         & 2.6 Гб & 34.72 \\
 	\hline
 	\end{tabular} \\
-	Табл. 3. Распределение объёмов данных и времени выполнения между процессами при балансировке количества элементов матрицы
-\end{center}
+	\caption{Распределение объёмов данных и времени выполнения между процессами при балансировке количества элементов матрицы}
+\end{table}
 
 
 
