@@ -686,7 +686,9 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\quad
 	\boldsymbol{\overline{x}} = \dfrac{\boldsymbol{x}}{L},
 	\quad
-	\boldsymbol{\overline{u}} = \dfrac{E \boldsymbol{u}}{(1 - \nu^2) p},
+	\overline{E} = \dfrac{E}{p},
+	\quad
+	\boldsymbol{\overline{u}} = \dfrac{\overline{E} \boldsymbol{u}}{(1 - \nu^2)},
 \end{gather*}
 \\
 где $L$ --- характерный размер области; $p$ --- нормировочный множитель для нагружений; черта над переменными означает, что они безразмерны. Примем коэффициент Пуассона $\nu = 0.3$, а безразмерный модуль Юнга $\overline{E} = 21$. Будем считать, что если не указано иного, функция нелокального влияния $\varphi = \varphi_{2, 1}$. 
@@ -751,7 +753,7 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\label{fig:LongRectStress11VarFx200}
 \end{figure}
 
-Рассматривая центральное сечение вдоль другой оси, можем убедиться в том, что в нелокальной постановке поверхность напряжений имеет более сложную форму. Вариация весоворого параметра $p_1$ влияет на отклонение напряжений на границе, в то время как вариация радиуса нелокального влияния $r$ влияет на размах кромочного эффекта. Результаты расчётов представлена на рис. \ref{fig:LongRectStress11VarP} и \ref{fig:LongRectStress11VarR}.
+Рассматривая центральное сечение вдоль другой оси, можем убедиться в том, что в нелокальной постановке поверхность напряжений имеет более сложную форму. Вариация весоворого параметра $p_1$ влияет на отклонение напряжений на границе, в то время как вариация радиуса нелокального влияния $r$ влияет на размах кромочного эффекта. Важно отметить, что интегральная нагрузка в каждом сечении равна приложенной, что говорит нам о выполнении принципа Сен-Венана. Результаты расчётов представлена на рис. \ref{fig:LongRectStress11VarP} и \ref{fig:LongRectStress11VarR}.
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectStress11VarP.eps}}
@@ -763,6 +765,20 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectStress11VarR.eps}}
 	\caption{Распределение напряжений $\overline{\sigma}_{11}$ в сечении $\overline{x}_1 = 5$ при вариации $r$}
 	\label{fig:LongRectStress11VarR}
+\end{figure}
+
+В деформациях кромочный эффект проявляется лишь вблизи приложения нагрузки. При увеличении радиуса нелокального влияния $r$, так же как и в напряжениях, увеличивается размах кромочного эффекта, а при уменьшении весового параметра $p_1$ отклонение от решения задачи в классической постановке увеличивается, что продемонстрировано на рис. \ref{fig:LongRectEps11VarR} и \ref{fig:LongRectEps11VarP}. В силу того, что размах кромочного эффекта достаточно узкий в  сравнии с размерами области, на рисунках отображается лишь часть области, где деформации отличны от константы.
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectEps11VarR.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{11}$ в сечении $\overline{x}_1 = 5$ при вариации $p_1$}
+	\label{fig:LongRectEps11VarR}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectEps11VarP.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{11}$ в сечении $\overline{x}_1 = 5$ при вариации $r$}
+	\label{fig:LongRectEps11VarP}
 \end{figure}
 
 Стоит отметить, что в отличие от классической постановки, в нелокальной также возникают касательные напряжения $\overline{\sigma}_{12}$. Их характер имеет весьма сложную, но симметричную структуру. На рис. \ref{fig:LongRectSigma12X1} и \ref{fig:LongRectSigma12X2} изображены кривые в сечениях отстоящих от границы на величину радиуса нелокального влияния при различных весовых параметрах.
@@ -779,16 +795,18 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\label{fig:LongRectSigma12X2}
 \end{figure}
 
+Вариация основных параметров семейства функций нелокального влияния (\ref{phi}) показывает, что отклонение от классического решения становится тем сильнее, чем больше параметр $p$ и достигает своего максимума при константной функции влияния. Увеличение параметра $q$ напротив уменьшает отклонение. Данный факт продемонстрирован на рис. \ref{fig:LongRectDispVarP} и \ref{fig:LongRectDispVarQ}, где показаны не сами отклонения, а относительная разница решений. Было также выбрано сечение с самым большим отклонением, чтобы показать, что учёт нелокальных эффектов может существенно повлиять на итоговые перемещения.
+
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectSigma12X1.eps}}
-	\caption{}
-	\label{fig:LongRectSigma12X1}
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectDispVarP.eps}}
+	\caption{Относительная разница нелокального и локального решений при вариации параметра $p$}
+	\label{fig:LongRectDispVarP}
 \end{figure}
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectSigma12X2.eps}}
-	\caption{}
-	\label{fig:LongRectSigma12X2}
+	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectDispVarQ.eps}}
+	\caption{Относительная разница нелокального и локального решений при вариации параметра $q$}
+	\label{fig:LongRectDispVarQ}
 \end{figure}
 
 \subsection{Расчёт на Т-образной области}
