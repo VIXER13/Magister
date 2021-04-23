@@ -795,7 +795,7 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\label{fig:LongRectSigma12X2}
 \end{figure}
 
-Вариация основных параметров семейства функций нелокального влияния (\ref{phi}) показывает, что отклонение от классического решения становится тем сильнее, чем больше параметр $p$ и достигает своего максимума при константной функции влияния. Увеличение параметра $q$ напротив уменьшает отклонение. Данный факт продемонстрирован на рис. \ref{fig:LongRectDispVarP} и \ref{fig:LongRectDispVarQ}, где показаны не сами отклонения, а относительная разница решений. Было также выбрано сечение с самым большим отклонением, чтобы показать, что учёт нелокальных эффектов может существенно повлиять на итоговые перемещения.
+Вариация основных параметров семейства функций нелокального влияния (\ref{phi}) показывает, что отклонение от классического решения становится тем сильнее, чем больше параметр $p$ и достигает своего максимума при константной функции влияния. Увеличение параметра $q$, напротив, уменьшает отклонение. Данный факт продемонстрирован на рис. \ref{fig:LongRectDispVarP} и \ref{fig:LongRectDispVarQ}, где показаны не сами отклонения, а относительная разница решений. Было также выбрано сечение с самым большим отклонением, чтобы показать, что учёт нелокальных эффектов может существенно повлиять на итоговые перемещения.
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectDispVarP.eps}}
@@ -809,7 +809,87 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\label{fig:LongRectDispVarQ}
 \end{figure}
 
+
+
+\newpage
+
+
+
 \subsection{Расчёт на Т-образной области}
+
+Пусть теперь $S \subset [0, 1] \times [0, 1]$ --- T-образная область, изображённая на рис. \ref{fig:Tarea}, с введённой на ней равномерной сеткой $S_h$, состоящей из 30000 квадратичных серендиповых элементов. Коэффициент Пуассона $\nu$ по прежнему равен $0.3$, а безразмерный модуль Юнга $\overline{E} = 21$. Функция нелокального влияния $\varphi = \varphi_{2,1}$. Будем действовать растягивающей силой приложенной к нижнему концу пластины, верхний конец жёстко заделаем
+\\
+\begin{gather*}
+	\boldsymbol{\overline{u}} |_{\overline{x}_2 = 1} = 0,
+	\quad
+	\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 = 0} = 1.
+\end{gather*}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/Tarea.eps}}
+	\caption{T-образная область с граничными условиями и интересующими нас сечениями}
+	\label{fig:Tarea}
+\end{figure}
+
+Проведём серию расчётов, варьируя основные параметры модели. При вариации радиуса нелокального влияния $r$ в деформациях $\overline{\varepsilon}_{22}$, помимо эффектов связанных с прикладываемой нагрузкой, которые были описаны в предыдущем разделе на примере задачи Неймана, возникают также угловые эффекты, которые характеризуются появляющимися отрицательными деформациями со стороны верхней части области. Данный эффект встречался в экспериментах, которые описаны в книге Андреева \cite{Andreev}. Заметим, что при увеличении радиуса нелокального влияния, также увеличивается и размах углового эффекта. Результаты представлены на рис. \ref{fig:strain22Loc}, \ref{fig:strain22NonlocP12R005}, \ref{fig:strain22NonlocP12R01} и \ref{fig:strain22NonlocP12R015}.
+
+\begin{figure}[!hb]
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/T/strain22Loc.png}
+	  \caption{Распределение напряжений $\overline{\varepsilon}_{22}$ при $r = 0$ и $p_1 = 1/2$}
+	  \label{fig:strain22Loc}
+	  \includegraphics[width=\textwidth]{pics/T/strain22NonlocP12R01.png}
+	  \caption{Распределение напряжений $\overline{\varepsilon}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \label{fig:strain22NonlocP12R01}
+	\endminipage\hfill
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/T/strain22NonlocP12R005.png}
+	  \caption{Распределение напряжений $\overline{\varepsilon}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \label{fig:strain22NonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/T/strain22NonlocP12R015.png}
+	  \caption{Распределение напряжений $\overline{\varepsilon}_{22}$ при $r = 0.15$ и $p_1 = 1/2$}
+	  \label{fig:strain22NonlocP12R015}
+	\endminipage
+\end{figure}
+
+При рассмотрении напряжений $\overline{\sigma}_{22}$ в нижней части области можем заметить, что так же как и в задаче Неймана, здесь мы наблюдаем кромочный эффект, который характеризуется снижением напряжений вблизи границ области. Также в нелокальной постановке задачи мы наблюдаем смягчение угловых концентраторов, хотя интегрально, каждое из сечений равно приложенной нагрузке. В верхней половине области различия между локальной и нелокальной постановками не столь существенны. Результаты представлены на рис. \ref{fig:stress22Loc}, \ref{fig:stress22NonlocP12R005}, \ref{fig:stress22NonlocP12R01} и \ref{fig:stress22NonlocP12R015}.
+
+\begin{figure}[!hb]
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/T/stress22Loc.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
+	  \label{fig:stress22Loc}
+	  \includegraphics[width=\textwidth]{pics/T/stress22NonlocP12R01.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \label{fig:stress22NonlocP12R01}
+	\endminipage\hfill
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/T/stress22NonlocP12R005.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \label{fig:stress22NonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/T/stress22NonlocP12R015.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.15$ и $p_1 = 1/2$}
+	  \label{fig:stress22NonlocP12R015}
+	\endminipage
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/T/AB_sigma_r01.eps}}
+	\caption{}
+	\label{fig:AB_sigma_r01}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/T/CD_sigma_r01.eps}}
+	\caption{}
+	\label{fig:CD_sigma_r01}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/T/EF_eps_r01.eps}}
+	\caption{}
+	\label{fig:EF_eps_r01}
+\end{figure}
 
 \subsection{Задача Кирша}
 
@@ -826,6 +906,9 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\bibitem{Bathe} Bathe K-J. Finite Element Procedures. Second edition. --- 2014. --- 1065 p.
 	
 	\bibitem{K10} https://www.kiam.ru/MVS/resourses/k10.html (Дата обращения 31.03.2021)
+	
+	\bibitem{Andreev}  Андреев А.В. Инженерные методы определения концентрации напряжений в деталях
+машин. М.: Машиностроение, 1976, 72 с.
 \end{thebibliography}
 
 \end{document}
