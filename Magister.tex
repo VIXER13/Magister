@@ -822,50 +822,50 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 \\
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.6\textwidth]{pics/Tarea.eps}}
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/Tarea.eps}}
 	\caption{T-образная область с граничными условиями и интересующими нас сечениями}
 	\label{fig:Tarea}
 \end{figure}
 
-Проведём серию расчётов, варьируя основные параметры модели. При рассмотрении деформаций $\overline{\varepsilon}_{22}$, помимо эффектов связанных с прикладываемой нагрузкой, которые были описаны в предыдущем разделе на примере задачи Неймана, возникают и угловые эффекты, которые характеризуются возникающими отрицательными деформациями со стороны верхней части области. Причём, чем больше радиус нелокального влияния $r$, тем шире возникающий эффект, что наглядно показано на рис. \ref{fig:strain22Loc}, \ref{fig:strain22NonlocP12R01}, \ref{fig:strain22NonlocP12R005} и \ref{fig:strain22NonlocP12R015}.
+Проведём серию расчётов, варьируя основные параметры модели. При рассмотрении деформаций $\overline{\varepsilon}_{22}$, помимо эффектов связанных с прикладываемой нагрузкой, которые были описаны в предыдущем разделе на примере задачи Неймана, возникают и угловые эффекты, которые характеризуются возникающими отрицательными деформациями со стороны верхней части области. Причём, чем больше радиус нелокального влияния $r$, тем шире возникающий эффект, что наглядно показано на рис. \ref{fig:TEpsLoc}, \ref{fig:TEpsNonlocP12R01}, \ref{fig:TEpsNonlocP12R005} и \ref{fig:TEpsNonlocP12R015}.
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/T/strain22Loc.png}
-	  \caption{Распределение напряжений $\overline{\varepsilon}_{22}$ при $p_1 = 1/2$ и $r = 0$}
-	  \label{fig:strain22Loc}
-	  \includegraphics[width=\textwidth]{pics/T/strain22NonlocP12R01.png}
-	  \caption{Распределение напряжений $\overline{\varepsilon}_{22}$ при $p_1 = 1/2$ и $r = 0.1$}
-	  \label{fig:strain22NonlocP12R01}
+	  \includegraphics[width=\textwidth]{pics/T/TEpsLoc.png}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $p_1 =~1/2$ и $r =~0$}
+	  \label{fig:TEpsLoc}
+	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R01.png}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $p_1 =~1/2$ и $r =~0.1$}
+	  \label{fig:TEpsNonlocP12R01}
 	\endminipage\hfill
 	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/T/strain22NonlocP12R005.png}
-	  \caption{Распределение напряжений $\overline{\varepsilon}_{22}$ при $p_1 = 1/2$ и $r = 0.05$}
-	  \label{fig:strain22NonlocP12R005}
-	  \includegraphics[width=\textwidth]{pics/T/strain22NonlocP12R015.png}
-	  \caption{Распределение напряжений $\overline{\varepsilon}_{22}$ при $p_1 = 1/2$ и $r = 0.15$}
-	  \label{fig:strain22NonlocP12R015}
+	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R005.png}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $p_1 =~1/2$ и $r =~0.05$}
+	  \label{fig:TEpsNonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R015.png}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $p_1 =~1/2$ и $r =~0.15$}
+	  \label{fig:TEpsNonlocP12R015}
 	\endminipage
 \end{figure}
 
-Схожие угловые эффекты в деформациях $\overline{\varepsilon}_{22}$ ранее были описаны в книге Андреева \cite{Andreev} после проведения серии натурных экспериментов. В книге Андреев также утверждает, что интегральная нагрузка напряжений $\overline{\sigma}_{22}$ в сечениях близких к ступенчатому переходу может отличаться от прикладываемой нагрузки, однако данный эффект не удалось обнаружить численно, так как во всех сечениях, даже самых близких к ступенчатому переходу, интегральная нагрузка сохраняется. Результаты с распределением напряжений $\overline{\sigma}_{22}$ продемонстрированы на рис. \ref{fig:stress22Loc}, \ref{fig:stress22NonlocP12R01}, \ref{fig:stress22NonlocP12R005} и \ref{fig:stress22NonlocP12R015}.
+Схожие угловые эффекты в деформациях $\overline{\varepsilon}_{22}$ ранее были описаны в книге Андреева \cite{Andreev} после проведения серии натурных экспериментов. В книге Андреев также утверждает, что интегральная нагрузка напряжений $\overline{\sigma}_{22}$ в сечениях близких к ступенчатому переходу может отличаться от прикладываемой нагрузки, однако данный эффект не удалось обнаружить численно, так как во всех сечениях, даже самых близких к ступенчатому переходу, интегральная нагрузка сохраняется. Результаты с распределением напряжений $\overline{\sigma}_{22}$ продемонстрированы на рис. \ref{fig:TSigmaLoc}, \ref{fig:TSigmaNonlocP12R01}, \ref{fig:TSigmaNonlocP12R005} и \ref{fig:TSigmaNonlocP12R015}.
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/T/stress22Loc.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
-	  \label{fig:stress22Loc}
-	  \includegraphics[width=\textwidth]{pics/T/stress22NonlocP12R01.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
-	  \label{fig:stress22NonlocP12R01}
+	  \includegraphics[width=\textwidth]{pics/T/TSigmaLoc.png}
+	  \caption{Распределение $\overline{\sigma}_{22}$ при $p_1 =~1/2$ и $r = 0$}
+	  \label{fig:TSigmaLoc}
+	  \includegraphics[width=\textwidth]{pics/T/TSigmaNonlocP12R01.png}
+	  \caption{Распределение $\overline{\sigma}_{22}$ при $p_1 =~1/2$ и $r = 0.1$}
+	  \label{fig:TSigmaNonlocP12R01}
 	\endminipage\hfill
 	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/T/stress22NonlocP12R005.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
-	  \label{fig:stress22NonlocP12R005}
-	  \includegraphics[width=\textwidth]{pics/T/stress22NonlocP12R015.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.15$ и $p_1 = 1/2$}
-	  \label{fig:stress22NonlocP12R015}
+	  \includegraphics[width=\textwidth]{pics/T/TSigmaNonlocP12R005.png}
+	  \caption{Распределение $\overline{\sigma}_{22}$ при $p_1 =~1/2$ и $r = 0.05$}
+	  \label{fig:TSigmaNonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/T/TSigmaNonlocP12R015.png}
+	  \caption{Распределение $\overline{\sigma}_{22}$ при $p_1 =~1/2$ и $r = 0.15$}
+	  \label{fig:TSigmaNonlocP12R015}
 	\endminipage
 \end{figure}
 
@@ -913,10 +913,109 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 
 \subsection{Задача Кирша}
 
+%В прикладных задачах особое внимание стоит уделять зонами повышенной концентрации напряжений и деформаций, так как при переменных нагрузках в них в первую очередь начинает происходить разрушение материала. В частности, такими зонами являются всевозможные отверстия
+
+Рассмотрим задачу Кирша \cite{Birger} с обобщением на эллиптические вырезы на области $S = [-1, 1] \times [-1, 1]$, зададим следующие граничные условия
+\\
+\begin{gather*}
+	\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 = -1} = -1
+	\quad
+	\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 =  1} =  1.
+\end{gather*}
+\\
+Также добавим два дополнительных условия, которые зафиксируют область относительно главных осей и дадут симметрию решения
+\\
+\begin{gather*}
+	\overline{u}_i |_{\overline{x}_i = 0} = 0, \quad i = \overline{1, 2}.
+\end{gather*}
+
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/EllipticalCut.eps}}
 	\caption{Область с эллиптическим вырезом}
 	\label{fig:EllipticalCut}
+\end{figure}
+
+Отметим на рис. \ref{fig:EllipticalCut} сечения, которые представляют особый интерес исследования: это сечение AB, соединяющее нижнюю часть эллипса и нижнюю кромку области $S$; кромка эллипса CD; и сечение EF, которое находится посередине между правой крайней точкой эллипса и правой кромкой области $S$. В расчётах будем варьировать радиус $r_1$, радиус $r_2$ будем считать постоянным.
+
+Для начала рассмотрим классическую задачу Кирша с круговым вырезом, где $r_1 = r_2 = 0.2$. Так же как и в случае с Т-образной областью, в деформациях $\overline{\varepsilon}_{11}$ в области смежной с концентратором на кромке окружности возникают отрицательные деформации, размах которых тем шире, чем больше радиус нелокального влияния $r$. Результаты представлены на рис. \ref{fig:circleEpsLoc}, \ref{fig:circleEpsNonlocP12R005}, \ref{fig:circleEpsNonlocP12R01} и \ref{fig:circleEpsNonlocP12R02}.
+
+\begin{figure}[!hb]
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/circle/circleEpsLoc.png}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0$ и $p_1 = 1/2$}
+	  \label{fig:circleEpsLoc}
+	  \includegraphics[width=\textwidth]{pics/circle/circleEpsNonlocP12R01.png}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.1$ и $p_1 = 1/2$}
+	  \label{fig:circleEpsNonlocP12R01}
+	\endminipage\hfill
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/circle/circleEpsNonlocP12R005.png}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.05$ и $p_1 = 1/2$}
+	  \label{fig:circleEpsNonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/circle/circleEpsNonlocP12R02.png}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.2$ и $p_1 = 1/2$}
+	  \label{fig:circleEpsNonlocP12R02}
+	\endminipage
+\end{figure}
+
+В напряжениях $\overline{\sigma}_{11}$, так же, как и в Т-образной области, происходит смягчение концентраторов, в следствие чего максимальный уровень напряжений ниже, чем в классической постановке, в то время как уровень деформаций $\overline{\varepsilon}_{11}$ в концентраторах, напротив, провышается. Как и во всех расчётах до этого, здесь также наблюдается кромочный эффект на верхнем и нижнем конце области, который характеризуется снижением напряжений вблизи границы. Результаты расчётов представлены на рис. \ref{fig:circleSigmaLoc}, \ref{fig:circleSigmaNonlocP12R01}, \ref{fig:circleSigmaNonlocP12R005} и \ref{fig:circleSigmaNonlocP12R02}.
+
+\begin{figure}[!hb]
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/circle/circleSigmaLoc.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
+	  \label{fig:circleSigmaLoc}
+	  \includegraphics[width=\textwidth]{pics/circle/circleSigmaNonlocP12R01.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \label{fig:circleSigmaNonlocP12R01}
+	\endminipage\hfill
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/circle/circleSigmaNonlocP12R005.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \label{fig:circleSigmaNonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/circle/circleSigmaNonlocP12R02.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
+	  \label{fig:circleSigmaNonlocP12R02}
+	\endminipage
+\end{figure}
+
+\begin{figure}[!hb]
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsLoc.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12EpsLoc}
+	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R01.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12EpsNonlocP12R01}
+	\endminipage\hfill
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R005.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12EpsNonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R02.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12EpsNonlocP12R02}
+	\endminipage
+\end{figure}
+
+
+\begin{figure}[!hb]
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaLoc.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12SigmaLoc}
+	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R01.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12SigmaNonlocP12R01}
+	\endminipage\hfill
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R005.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12SigmaNonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R02.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12SigmaNonlocP12R02}
+	\endminipage
 \end{figure}
 
 
@@ -933,8 +1032,9 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	
 	\bibitem{K10} https://www.kiam.ru/MVS/resourses/k10.html (Дата обращения 31.03.2021)
 	
-	\bibitem{Andreev}  Андреев А.В. Инженерные методы определения концентрации напряжений в деталях
-машин. М.: Машиностроение, 1976, 72 с.
+	\bibitem{Andreev}  Андреев А.В. Инженерные методы определения концентрации напряжений в деталях машин. М.: Машиностроение, 1976, 72 с.
+	
+	\bibitem{Birger} Биргер И.А., Шорр Б.Ф., Иосилевич Г.Б. Расчет на прочность деталей машин: Справочник. 4-е изд., перераб. и доп. --- М.: Машиностроение, 1993. --- 640 с: ил.
 \end{thebibliography}
 
 \end{document}
