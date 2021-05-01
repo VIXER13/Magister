@@ -605,15 +605,15 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 	\hline
-	$N$   & $r$  & $V_1$  & $t_{16}^1$, с & $V_2$  & $t_{16}^2$, с & $V_3$  & $t_{16}^3$, с & $V_4$  & $t_{16}^4$, с \\
+	$N$   & $r$  & $V_1$  & $V_2$  & $V_3$  & $V_4$  & $t_{16}^1$, с & $t_{16}^2$, с & $t_{16}^3$, с &  $t_{16}^4$, с \\
 	\hline
-	10000 & 0.05 & 42 Мб  & 0.934         & 40 Мб  & 0.868         & 39 Мб  & 0.890         & 82 Мб  & 0.974 \\
+	10000 & 0.05 & 42 Мб  & 40 Мб  & 39 Мб  & 82 Мб  & 0.934         & 0.868         & 0.890         & 0.974 \\
 	\hline
-	10000 & 0.1  & 136 Мб & 3.775         & 130 Мб & 3.396         & 130 Мб & 3.670         & 291 Мб & 3.775 \\
+	10000 & 0.1  & 136 Мб & 130 Мб & 130 Мб & 291 Мб & 3.775         & 3.396         & 3.670         & 3.775 \\
 	\hline
-	40000 & 0.05 & 558 Мб & 15.16         & 545 Мб & 14.19         & 544 Мб & 14.55         & 1.2 Гб & 15.74 \\
+	40000 & 0.05 & 558 Мб & 545 Мб & 544 Мб & 1.2 Гб & 15.16         & 14.19         & 14.55         & 15.74 \\
 	\hline
-	40000 & 0.1  & 1.9 Гб & 55.41         & 1.9 Гб & 54.80         & 1.9 Гб & 57.47         & 4.5 Гб & 59.91 \\
+	40000 & 0.1  & 1.9 Гб & 1.9 Гб & 1.9 Гб & 4.5 Гб & 55.41         & 54.80         & 57.47         & 59.91 \\
 	\hline
 	\end{tabular}
 	\caption{Распределение объёмов данных и времени выполнения между процессами при балансировке объёмов вычислений}
@@ -639,15 +639,15 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
 	\hline
-	$N$   & $r$ & $V_1$   & $t_{16}^1$, с & $V_2$  & $t_{16}^2$, с & $V_3$  & $t_{16}^3$, с & $V_4$  & $t_{16}^4$, с \\
+	$N$   & $r$ & $V_1$   & $V_2$  & $V_3$  & $V_4$  & $t_{16}^1$, с & $t_{16}^2$, с & $t_{16}^3$, с & $t_{16}^4$, с \\
 	\hline
-	10000 & 0.05 & 50 Мб  & 1.133         & 51 Мб  & 1.119         & 51 Мб  & 0.917         & 51 Мб  & 0.603 \\
+	10000 & 0.05 & 50 Мб  & 51 Мб  & 51 Мб  & 51 Мб  & 1.133         & 1.119         & 0.917         & 0.603 \\
 	\hline
-	10000 & 0.1  & 168 Мб & 4.545         & 172 Мб & 4.505         & 175 Мб & 3.212         & 172 Мб & 2.236 \\
+	10000 & 0.1  & 168 Мб & 172 Мб & 175 Мб & 172 Мб & 4.545         & 4.505         & 3.212         & 2.236 \\
 	\hline
-	40000 & 0.05 & 711 Мб & 19.12         & 716 Мб & 18.68         & 723 Мб & 12.40         & 716 Мб & 9.311 \\
+	40000 & 0.05 & 711 Мб & 716 Мб & 723 Мб & 716 Мб & 19.12         & 18.68         & 12.40         & 9.311 \\
 	\hline
-	40000 & 0.1  & 2.5 Гб & 72.66         & 2.6 Гб & 72.46         & 2.5 Гб & 45.91         & 2.6 Гб & 34.72 \\
+	40000 & 0.1  & 2.5 Гб & 2.6 Гб & 2.5 Гб & 2.6 Гб & 72.66         & 72.46         & 45.91         &  34.72 \\
 	\hline
 	\end{tabular}
 	\caption{Распределение объёмов данных и времени выполнения между процессами при балансировке количества элементов матрицы}
@@ -673,7 +673,7 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 
 \begin{figure}[!htb]
 	\center{\includegraphics[width=0.7\textwidth]{pics/MPIAcceleration.eps}}
-	\caption{Ускорение времени сборки матрицы жёсткости при использовании технологии MPI}
+	\caption{Ускорение времени сборки матрицы жёсткости при использовании технологии MPI, где speed означает балансировку объёмов вычислений, а mem балансировку объёмов памяти}
 	\label{fig:MPIAcceleration}
 \end{figure}
 
@@ -793,7 +793,7 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\label{fig:LongRectSigma12X2}
 \end{figure}
 
-Вариация основных параметров семества функций нелокального влияния (\ref{phi}) показывает, что в перемещениях в нелокальной постановке наблюдается увеличение отклонения относительно классического решения при увеличении параметра $p$ и достигает своего максимума при константной функции влияния. При увеличении параметра $q$, напротив, отклонение в перемещениях уменьшается, что наглядно продемонстрировано на рис. \ref{fig:LongRectDispVarP} и \ref{fig:LongRectDispVarQ} соответственно, где показаны не сами отклонения, а относительная разница решений и где было выбрано сечение с наибольшим отклонением.
+Вариация основных параметров семества функций нелокального влияния (\ref{phi}) показывает, что в перемещениях $\overline{u}_1$ в нелокальной постановке наблюдается увеличение отклонения относительно классического решения при увеличении параметра $p$ и достигает своего максимума при константной функции влияния. При увеличении параметра $q$, напротив, отклонение в перемещениях уменьшается, что наглядно продемонстрировано на рис. \ref{fig:LongRectDispVarP} и \ref{fig:LongRectDispVarQ} соответственно, где показаны не сами отклонения, а относительная разница решений и где было выбрано сечение с наибольшим отклонением.
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectDispVarP.eps}}
@@ -848,7 +848,7 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\endminipage
 \end{figure}
 
-Схожие угловые эффекты в деформациях $\overline{\varepsilon}_{22}$ ранее были описаны в книге Андреева \cite{Andreev} после проведения серии натурных экспериментов. В книге Андреев также утверждает, что интегральная нагрузка напряжений $\overline{\sigma}_{22}$ в сечениях близких к ступенчатому переходу может отличаться от прикладываемой нагрузки, однако данный эффект не удалось обнаружить численно, так как во всех сечениях, даже самых близких к ступенчатому переходу, интегральная нагрузка сохраняется. Результаты с распределением напряжений $\overline{\sigma}_{22}$ продемонстрированы на рис. \ref{fig:TSigmaLoc}, \ref{fig:TSigmaNonlocP12R01}, \ref{fig:TSigmaNonlocP12R005} и \ref{fig:TSigmaNonlocP12R015}.
+Схожие угловые эффекты в деформациях $\overline{\varepsilon}_{22}$ ранее были описаны в книге Андреева \cite{Andreev} после проведения серии натурных экспериментов. В книге Андреев также утверждает, что интегральная нагрузка напряжений $\overline{\sigma}_{22}$ в сечениях близких к ступенчатому переходу может отличаться от прикладываемой нагрузки, однако данный эффект не удалось обнаружить численно, так как во всех сечениях, даже самых близких к ступенчатому переходу, интегральная нагрузка сохраняется. Однако, стоит заметить, максимальное значение напряжений в концентраторах уменьшилось. Результаты с распределением напряжений $\overline{\sigma}_{22}$ продемонстрированы на рис. \ref{fig:TSigmaLoc}, \ref{fig:TSigmaNonlocP12R01}, \ref{fig:TSigmaNonlocP12R005} и \ref{fig:TSigmaNonlocP12R015}.
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
@@ -915,7 +915,7 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 
 %В прикладных задачах особое внимание стоит уделять зонами повышенной концентрации напряжений и деформаций, так как при переменных нагрузках в них в первую очередь начинает происходить разрушение материала. В частности, такими зонами являются всевозможные отверстия
 
-Рассмотрим задачу Кирша \cite{Birger} с обобщением на эллиптические вырезы на области $S = [-1, 1] \times [-1, 1]$, зададим следующие граничные условия
+Рассмотрим задачу Кирша \cite{Birger} с обобщением на эллиптические вырезы на области $S \subset [-1, 1] \times [-1, 1]$, со следующими граничными условиями
 \\
 \begin{gather*}
 	\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 = -1} = -1
@@ -928,6 +928,8 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 \begin{gather*}
 	\overline{u}_i |_{\overline{x}_i = 0} = 0, \quad i = \overline{1, 2}.
 \end{gather*}
+\\
+Коэфициента Пуассона $\nu = 0.3$, модуль Юнга $\overline{E} = 21$, $\varphi = \varphi_{2, 1}$.
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/EllipticalCut.eps}}
@@ -935,9 +937,9 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\label{fig:EllipticalCut}
 \end{figure}
 
-Отметим на рис. \ref{fig:EllipticalCut} сечения, которые представляют особый интерес исследования: это сечение AB, соединяющее нижнюю часть эллипса и нижнюю кромку области $S$; кромка эллипса CD; и сечение EF, которое находится посередине между правой крайней точкой эллипса и правой кромкой области $S$. В расчётах будем варьировать радиус $r_1$, радиус $r_2$ будем считать постоянным.
+Отметим на рис. \ref{fig:EllipticalCut} сечения, которые представляют особый интерес: это сечение AB; граница эллипса CD с введённой дополнительной угловой координатой $\varphi$; и сечение EF, которое находится посередине между правой крайней точкой эллипса и правой границей области $S$. В расчётах будем варьировать радиус $r_1$, радиус $r_2$ будем считать постоянным и равным 0.2.
 
-Для начала рассмотрим классическую задачу Кирша с круговым вырезом, где $r_1 = r_2 = 0.2$. Так же как и в случае с Т-образной областью, в деформациях $\overline{\varepsilon}_{11}$ в области смежной с концентратором на кромке окружности возникают отрицательные деформации, размах которых тем шире, чем больше радиус нелокального влияния $r$. Результаты представлены на рис. \ref{fig:circleEpsLoc}, \ref{fig:circleEpsNonlocP12R005}, \ref{fig:circleEpsNonlocP12R01} и \ref{fig:circleEpsNonlocP12R02}.
+Для начала рассмотрим классическую задачу Кирша с круговым вырезом, где $r_1 = r_2$. Так же как и в случае с Т-образной областью, в деформациях $\overline{\varepsilon}_{11}$ в области смежной с концентратором на окружности возникают отрицательные деформации, размах которых тем шире, чем больше радиус нелокального влияния $r$. Результаты представлены на рис. \ref{fig:circleEpsLoc}, \ref{fig:circleEpsNonlocP12R005}, \ref{fig:circleEpsNonlocP12R01} и \ref{fig:circleEpsNonlocP12R02}.
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
@@ -958,7 +960,7 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\endminipage
 \end{figure}
 
-В напряжениях $\overline{\sigma}_{11}$, так же, как и в Т-образной области, происходит смягчение концентраторов, в следствие чего максимальный уровень напряжений ниже, чем в классической постановке, в то время как уровень деформаций $\overline{\varepsilon}_{11}$ в концентраторах, напротив, провышается. Как и во всех расчётах до этого, здесь также наблюдается кромочный эффект на верхнем и нижнем конце области, который характеризуется снижением напряжений вблизи границы. Результаты расчётов представлены на рис. \ref{fig:circleSigmaLoc}, \ref{fig:circleSigmaNonlocP12R01}, \ref{fig:circleSigmaNonlocP12R005} и \ref{fig:circleSigmaNonlocP12R02}.
+В напряжениях $\overline{\sigma}_{11}$, так же, как и в Т-образной области, происходит смягчение концентраторов, в следствие чего максимальный уровень напряжений ниже, чем в классической постановке, в то время как уровень деформаций $\overline{\varepsilon}_{11}$, напротив, провышается. Как и во всех расчётах до этого, здесь также наблюдается кромочный эффект на верхнем и нижнем концах области, который характеризуется снижением напряжений вблизи границы. Результаты расчётов представлены на рис. \ref{fig:circleSigmaLoc}, \ref{fig:circleSigmaNonlocP12R01}, \ref{fig:circleSigmaNonlocP12R005} и \ref{fig:circleSigmaNonlocP12R02}.
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
@@ -979,44 +981,86 @@ $J_q^{(e)} = \left|\det{\boldsymbol{\hat{J}}^{(e)}(\boldsymbol{x}_q)}\right|$ --
 	\endminipage
 \end{figure}
 
-\begin{figure}[!hb]
-	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsLoc.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
-	  \label{fig:ellipse12EpsLoc}
-	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R01.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
-	  \label{fig:ellipse12EpsNonlocP12R01}
-	\endminipage\hfill
-	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R005.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
-	  \label{fig:ellipse12EpsNonlocP12R005}
-	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R02.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
-	  \label{fig:ellipse12EpsNonlocP12R02}
-	\endminipage
+Наконец расмотрим интересуемые нас сечения при вариации весового параметра $p_1$. В сечении AB качественных различий в деформациях $\overline{\varepsilon}_{11}$ нет, но в нелокальном случае, близи отверстия наблюдается их увеличение. Напряжения $\overline{\sigma}_{11}$ напротив, уменьшают своё значение как вблизи отверстия, так и в близи нижней границы области, но при этом в центре области напряжения в среднем выше, что объясняет равенство интегралов приложенной нагрузки и нагрузки взятой в сечениях. Результаты представлены на рис. \ref{fig:ABCircleEps} и \ref{fig:ABCircleSigma}.
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABCircleEps.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении AB при вариации весов}
+	\label{fig:ABCircleEps}
 \end{figure}
 
-
-\begin{figure}[!hb]
-	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaLoc.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
-	  \label{fig:ellipse12SigmaLoc}
-	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R01.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
-	  \label{fig:ellipse12SigmaNonlocP12R01}
-	\endminipage\hfill
-	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R005.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
-	  \label{fig:ellipse12SigmaNonlocP12R005}
-	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R02.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
-	  \label{fig:ellipse12SigmaNonlocP12R02}
-	\endminipage
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABCircleSigma.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении AB при вариации весов}
+	\label{fig:ABCircleSigma}
 \end{figure}
+
+На дуге CD хорошо видны возникающие в нелокальном случае отрицательные деформации $\overline{\varepsilon}_{11}$, которые при уменьшении параметра $p_1$ увеличиваются по модулю. Напряжения $\overline{\sigma}_{11}$ в верхней точке, при уменьшении параметра $p_1$ становится меньше и в правой точке окружности практически неотличимы от полученных при решении классического уравнения. Результаты представлены на рис. \ref{fig:CDCircleEps} и \ref{fig:CDCircleSigma}.
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/circle/CDCircleEps.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении CD при вариации весов}
+	\label{fig:CDCircleEps}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/circle/CDCircleSigma.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении CD при вариации весов}
+	\label{fig:CDCircleSigma}
+\end{figure}
+
+И наконец рассмотрим сечение EF, равноостоящее от правой точки окружности и правой границы области $S$. И деформации $\overline{\varepsilon}_{11}$ и напряжения $\overline{\sigma}_{11}$ имеют <<двугорбую>> структуру, которая характеризуется снижением уровня деформаций и напряжений в центре области. Однако под действием коромчного эффекта, который приходится со стороны приложенной нагрузки, деформации $\overline{\varepsilon}_{11}$ увеличиваются при приближении к границе области $S$, в то время как напряжений $\overline{\sigma}_{11}$ напротив, становятся меньше и приобретают дополнительные приграничные <<горбы>>. Результаты представлены на рис. \ref{fig:EFCircleEps} и \ref{fig:EFCircleSigma}.
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/circle/EFCircleEps.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении EF при вариации весов}
+	\label{fig:EFCircleEps}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/circle/EFCircleSigma.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении EF при вариации весов}
+	\label{fig:EFCircleSigma}
+\end{figure}
+
+%\begin{figure}[!hb]
+%	\minipage{0.49\textwidth}
+%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsLoc.png}
+%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
+%	  \label{fig:ellipse12EpsLoc}
+%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R01.png}
+%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
+%	  \label{fig:ellipse12EpsNonlocP12R01}
+%	\endminipage\hfill
+%	\minipage{0.49\textwidth}
+%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R005.png}
+%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
+%	  \label{fig:ellipse12EpsNonlocP12R005}
+%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R02.png}
+%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
+%	  \label{fig:ellipse12EpsNonlocP12R02}
+%	\endminipage
+%\end{figure}
+
+
+%\begin{figure}[!hb]
+%	\minipage{0.49\textwidth}
+%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaLoc.png}
+%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
+%	  \label{fig:ellipse12SigmaLoc}
+%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R01.png}
+%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
+%	  \label{fig:ellipse12SigmaNonlocP12R01}
+%	\endminipage\hfill
+%	\minipage{0.49\textwidth}
+%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R005.png}
+%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
+%	  \label{fig:ellipse12SigmaNonlocP12R005}
+%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R02.png}
+%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
+%	  \label{fig:ellipse12SigmaNonlocP12R02}
+%	\endminipage
+%\end{figure}
 
 
 \newpage
