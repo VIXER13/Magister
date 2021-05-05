@@ -224,7 +224,6 @@ $\boldsymbol{n}$ --- внешняя нормаль области $S$.
 \begin{gather*}
 	A = \dfrac{pn}{4 r_1 r_2 \text{B}(1/n, 1/n) \text{B}(2/p, q+1)},
 \end{gather*}
-\\
 где $r_1, r_2 > 0$ --- радиусы нелокального влияния вдоль каждой оси; 
 
 $n > 0$ --- параметр лебегова пространства; 
@@ -238,7 +237,7 @@ B --- бета-функция Эйлера.
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\textwidth]{pics/LameEllipse.eps}
-	\caption{Виды зон нелокального влияния при $r_1 = 3$, $r_2 = 1$ и различных параметрах $n$}
+	\caption{Формы зоны нелокального влияния при различных параметрах $n$ и радиусах $r_1 = 3$, $r_2 = 1$}
 	\label{fig:LameEllipse}
 \end{figure}
 
@@ -294,7 +293,6 @@ $S^{(e)}$ --- область элемента $(e)$.
 \\
 
 Домножим уравнение (\ref{EquilibriumEquation}) на функцию формы $N_n^{(e)}$ и проинтегрируем по области $S$
-\\
 \begin{gather*}
 	\iint\limits_S N_n^{(e)} (\nabla_{\boldsymbol{x}} \cdot \boldsymbol{\hat{\sigma}} + \boldsymbol{b}) dS = \boldsymbol{0}, \quad
 	n \in I^{(e)}, \ (e) \in S_h.
@@ -348,7 +346,6 @@ $S^{(e)}$ --- область элемента $(e)$.
 	\iint\limits_S N_n^{(e)} b_j dS, \quad
 	i, j, k, l = \overline{1, 2}, \ n \in I^{(e)}, \ (e) \in S_h.
 \end{multline*}
-\\
 
 Итоговое выражение, которое мы хотим получить можно записать в следующем виде
 \\
@@ -454,7 +451,6 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 \\
 
 Якобиан на границе аппроксимируем следующим образом
-\\
 \begin{gather*}
 	J^{(be)} = \sqrt{
 	\left( x_{1i} \dfrac{\partial N_i^{(e)}}{\partial \xi^{(e)}} \right)^2 +
@@ -498,7 +494,7 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.7\textwidth]{pics/ApproxS.eps}
-	\caption{Аппроксимация зоны нелокального влияния}
+	\caption{Аппроксимация зоны нелокального влияния относительно центра конечного элемента}
 	\label{fig:ApproxS}
 \end{figure}
 
@@ -535,7 +531,6 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 \end{multline}
 \\
 Так же преобразуем и формулу (\ref{BArrpox1})
-\\
 \begin{gather}
 	\label{BArrpox3}
 	\boldsymbol{B} =
@@ -545,7 +540,6 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 	\sum\limits_{q \in Q^{(e)}}
 	w_q N_{n}^{(e)} (\boldsymbol{x}_q) \boldsymbol{b} (\boldsymbol{x}_q) J_q^{(e)}.
 \end{gather}
-\\
 Для общности, сделаем аналогичную процедуру и для аппроксимации граничных условий второго рода (\ref{PArrpox1})
 \\
 \begin{gather}
@@ -725,7 +719,6 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 \end{gather*}
 \\
 где $f$ --- некоторая функция нагружения. Для получения единственности решения поставленной задачи, добавим два геометрических условия, которые так же нам дадут симметрию решения и зафиксируют его относительно центра области по каждой из осей
-\\
 \begin{gather*}
 	\overline{u}_1 |_{\overline{x}_1 = 5} = 0,
 	\quad
@@ -792,13 +785,13 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectEps11VarR.eps}}
-	\caption{Распределение напряжений $\overline{\sigma}_{11}$ в сечении $\overline{x}_1 = 5$ при вариации $r$}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{11}$ в сечении $\overline{x}_1 = 5$ при вариации $r$}
 	\label{fig:LongRectEps11VarR}
 \end{figure}
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/LongRectEps11VarP.eps}}
-	\caption{Распределение напряжений $\overline{\sigma}_{11}$ в сечении $\overline{x}_1 = 5$ при вариации $p_1$}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{11}$ в сечении $\overline{x}_1 = 5$ при вариации $p_1$}
 	\label{fig:LongRectEps11VarP}
 \end{figure}
 
@@ -845,7 +838,7 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.6\textwidth]{pics/T/Tarea.eps}}
-	\caption{T-образная область с граничными условиями и интересующими нас сечениями}
+	\caption{T-образная область с заданными граничными условиями и интересующими нас сечениями}
 	\label{fig:Tarea}
 \end{figure}
 
@@ -878,20 +871,20 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 \end{comment}
 
 \begin{figure}[!hb]
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/T/TEpsLoc.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ в {Т-образной области} при $p_1 =~1/2$ и $r =~0$}
+	  \caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в {Т-образной области} при $p_1 =~1/2$ и $r =~0$}
 	  \label{fig:TEpsLoc}
 	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R01.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ в {Т-образной области} при $p_1 =~1/2$ и $r =~0.1$}
+	  \caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в {Т-образной области} при $p_1 =~1/2$ и $r =~0.1$}
 	  \label{fig:TEpsNonlocP12R01}
 	\endminipage\hfill
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R005.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ в {Т-образной области} при $p_1 =~1/2$ и $r =~0.05$}
+	  \caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в {Т-образной области} при $p_1 =~1/2$ и $r =~0.05$}
 	  \label{fig:TEpsNonlocP12R005}
 	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R015.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ в {Т-образной области} при $p_1 =~1/2$ и $r =~0.15$}
+	  \caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в {Т-образной области} при $p_1 =~1/2$ и $r =~0.15$}
 	  \label{fig:TEpsNonlocP12R015}
 	\endminipage
 \end{figure}
@@ -925,20 +918,20 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 \end{comment}
 
 \begin{figure}[!hb]
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/T/TSigmaLoc.png}
-	  \caption{Распределение $\overline{\sigma}_{22}$ при $p_1 =~1/2$ и $r = 0$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r = 0$}
 	  \label{fig:TSigmaLoc}
 	  \includegraphics[width=\textwidth]{pics/T/TSigmaNonlocP12R01.png}
-	  \caption{Распределение $\overline{\sigma}_{22}$ при $p_1 =~1/2$ и $r = 0.1$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r = 0.1$}
 	  \label{fig:TSigmaNonlocP12R01}
 	\endminipage\hfill
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/T/TSigmaNonlocP12R005.png}
-	  \caption{Распределение $\overline{\sigma}_{22}$ при $p_1 =~1/2$ и $r = 0.05$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r = 0.05$}
 	  \label{fig:TSigmaNonlocP12R005}
 	  \includegraphics[width=\textwidth]{pics/T/TSigmaNonlocP12R015.png}
-	  \caption{Распределение $\overline{\sigma}_{22}$ при $p_1 =~1/2$ и $r = 0.15$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r = 0.15$}
 	  \label{fig:TSigmaNonlocP12R015}
 	\endminipage
 \end{figure}
@@ -947,13 +940,13 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/T/AB_eps_r01.eps}}
-	\caption{Распределение деформаций в сечении AB при вариации весовых параметров}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в Т-образной области в сечении AB при вариации весовых параметров}
 	\label{fig:AB_eps_r01}
 \end{figure}
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/T/AB_sigma_r01.eps}}
-	\caption{Распределение напряжений в сечении AB при вариации весовых параметров}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в Т-образной области в сечении AB при вариации весовых параметров}
 	\label{fig:AB_sigma_r01}
 \end{figure}
 
@@ -961,13 +954,13 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/T/CD_eps_r01.eps}}
-	\caption{Распределение деформаций в сечении CD при вариации весовых параметров}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в Т-образной области в сечении CD при вариации весовых параметров}
 	\label{fig:CD_eps_r01}
 \end{figure}
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/T/CD_sigma_r01.eps}}
-	\caption{Распределение напряжений в сечении CD при вариации весовых параметров}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в Т-образной области в сечении CD при вариации весовых параметров}
 	\label{fig:CD_sigma_r01}
 \end{figure}
 
@@ -975,13 +968,13 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/T/EF_eps_r01.eps}}
-	\caption{Распределение деформаций в сечении EF при вариации весовых параметров}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в Т-образной области в сечении EF при вариации весовых параметров}
 	\label{fig:EF_eps_r01}
 \end{figure}
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/T/EF_sigma_r01.eps}}
-	\caption{Распределение напряжений в сечении EF при вариации весовых параметров}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в Т-образной области в сечении EF при вариации весовых параметров}
 	\label{fig:EF_sigma_r01}
 \end{figure}
 
@@ -1003,11 +996,11 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 	\overline{u}_i |_{\overline{x}_i = 0} = 0, \quad i = \overline{1, 2}.
 \end{gather*}
 \\
-Коэфициента Пуассона $\nu = 0.3$, модуль Юнга $\overline{E} = 21$, $\varphi = \varphi_{2, 1}$.
+Коэфициента Пуассона $\nu = 0.3$, безразмерный модуль Юнга $\overline{E} = 21$.
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/EllipticalCut.eps}}
-	\caption{Область с эллиптическим вырезом}
+	\center{\includegraphics[width=0.6\textwidth]{pics/EllipticalCut.eps}}
+	\caption{Область с эллиптическим вырезом, заданными нагружениями и интересуемыми сечениями}
 	\label{fig:EllipticalCut}
 \end{figure}
 
@@ -1016,20 +1009,20 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 Для начала рассмотрим классическую задачу Кирша с круговым вырезом, т. е. когда $r_1 = r_2$. В деформациях $\overline{\varepsilon}_{11}$, в областях на окружности смежных с концентраторами, возникают отрицательные деформации, размах которых тем шире, чем больше радиус нелокального влияния $r$. Такое поведение очень похоже на поведение, которое наблюдалось ранее в Т-образной области. Результаты представлены на рис. \ref{fig:circleEpsLoc}, \ref{fig:circleEpsNonlocP12R01}, \ref{fig:circleEpsNonlocP12R005} и \ref{fig:circleEpsNonlocP12R02}.
 
 \begin{figure}[!hb]
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/circle/CircleEpsLoc.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0$ и $p_1 = 1/2$}
+	  \caption{Распределение деформаций $\overline{\varepsilon}_{22}$ при $r =~0$, $p_1 = 1/2$ и $r_1 = 0.2$}
 	  \label{fig:circleEpsLoc}
 	  \includegraphics[width=\textwidth]{pics/circle/CircleEpsNonlocP12R01.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.1$ и $p_1 = 1/2$}
+	  \caption{Распределение деформаций $\overline{\varepsilon}_{22}$ при $r =~0.1$, $p_1 = 1/2$ и $r_1 = 0.2$}
 	  \label{fig:circleEpsNonlocP12R01}
 	\endminipage\hfill
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/circle/CircleEpsNonlocP12R005.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.05$ и $p_1 = 1/2$}
+	  \caption{Распределение деформаций $\overline{\varepsilon}_{22}$ при $r =~0.05$, $p_1 = 1/2$ и $r_1 = 0.2$}
 	  \label{fig:circleEpsNonlocP12R005}
 	  \includegraphics[width=\textwidth]{pics/circle/CircleEpsNonlocP12R02.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.2$ и $p_1 = 1/2$}
+	  \caption{Распределение деформаций $\overline{\varepsilon}_{22}$ при $r =~0.2$, $p_1 = 1/2$ и $r_1 = 0.2$}
 	  \label{fig:circleEpsNonlocP12R02}
 	\endminipage
 \end{figure}
@@ -1037,20 +1030,20 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 В напряжениях $\overline{\sigma}_{11}$, так же, как и в Т-образной области, происходит смягчение концентраторов, в следствие чего максимальный уровень напряжений ниже, чем в классической постановке, в то время как уровень деформаций $\overline{\varepsilon}_{11}$, напротив, провышается. Как и во всех расчётах до этого, здесь также наблюдается кромочный эффект на верхнем и нижнем концах области, который характеризуется снижением напряжений вблизи границы. Результаты расчётов представлены на рис. \ref{fig:circleSigmaLoc}, \ref{fig:circleSigmaNonlocP12R01}, \ref{fig:circleSigmaNonlocP12R005} и \ref{fig:circleSigmaNonlocP12R02}.
 
 \begin{figure}[!hb]
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/circle/CircleSigmaLoc.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$, $p_1 = 1/2$ и $r_1 = 0.2$}
 	  \label{fig:circleSigmaLoc}
 	  \includegraphics[width=\textwidth]{pics/circle/CircleSigmaNonlocP12R01.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$, $p_1 = 1/2$ и $r_1 = 0.2$}
 	  \label{fig:circleSigmaNonlocP12R01}
 	\endminipage\hfill
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/circle/CircleSigmaNonlocP12R005.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$, $p_1 = 1/2$ и $r_1 = 0.2$}
 	  \label{fig:circleSigmaNonlocP12R005}
 	  \includegraphics[width=\textwidth]{pics/circle/CircleSigmaNonlocP12R02.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$, $p_1 = 1/2$ и $r_1 = 0.2$}
 	  \label{fig:circleSigmaNonlocP12R02}
 	\endminipage
 \end{figure}
@@ -1058,62 +1051,62 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 Наконец расмотрим интересуемые нас сечения при вариации весового параметра $p_1$. В сечении AB качественных различий в деформациях $\overline{\varepsilon}_{11}$ нет, но в нелокальном случае, вблизи отверстия наблюдается их увеличение. Напряжения $\overline{\sigma}_{11}$ напротив, уменьшают своё значение как вблизи отверстия, так и в близи нижней границы области, но при этом в центре области напряжения в среднем выше, что объясняет равенство интегралов приложенной нагрузки и нагрузки взятой в сечениях. Результаты представлены на рис. \ref{fig:ABCircleEps} и \ref{fig:ABCircleSigma}.
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABCircleEps.eps}}
-	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении AB при вариации весов}
+	\center{\includegraphics[width=0.6\textwidth]{pics/circle/ABCircleEps.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении AB при вариации весов при $r_1 = 0.2$}
 	\label{fig:ABCircleEps}
 \end{figure}
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABCircleSigma.eps}}
-	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении AB при вариации весов}
+	\center{\includegraphics[width=0.6\textwidth]{pics/circle/ABCircleSigma.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении AB при вариации весов при $r_1 = 0.2$}
 	\label{fig:ABCircleSigma}
 \end{figure}
 
 На дуге CD хорошо видны возникающие в нелокальном случае отрицательные деформации $\overline{\varepsilon}_{11}$, которые при уменьшении параметра $p_1$ увеличиваются по модулю. Напряжения $\overline{\sigma}_{11}$ в верхней точке, при уменьшении параметра $p_1$ становится меньше и в правой точке окружности практически неотличимы от полученных при решении классического уравнения. Результаты представлены на рис. \ref{fig:CDCircleEps} и \ref{fig:CDCircleSigma}.
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/CDCircleEps.eps}}
-	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении CD при вариации весов}
+	\center{\includegraphics[width=0.65\textwidth]{pics/circle/CDCircleEps.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ на дуге CD при вариации весов при $r_1 = 0.2$}
 	\label{fig:CDCircleEps}
 \end{figure}
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/CDCircleSigma.eps}}
-	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении CD при вариации весов}
+	\center{\includegraphics[width=0.65\textwidth]{pics/circle/CDCircleSigma.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ на дуге CD при вариации весов при $r_1 = 0.2$}
 	\label{fig:CDCircleSigma}
 \end{figure}
 
-И наконец рассмотрим сечение EF, равноостоящее от правой точки окружности и правой границы области $S$. И деформации $\overline{\varepsilon}_{11}$ и напряжения $\overline{\sigma}_{11}$ имеют <<двугорбую>> структуру, которая характеризуется снижением уровня деформаций и напряжений в центре области. Однако под действием коромчного эффекта, который приходится со стороны приложенной нагрузки, деформации $\overline{\varepsilon}_{11}$ увеличиваются при приближении к границе области $S$, в то время как напряжений $\overline{\sigma}_{11}$ напротив, становятся меньше и приобретают дополнительные приграничные <<горбы>>. Результаты представлены на рис. \ref{fig:EFCircleEps} и \ref{fig:EFCircleSigma}.
+И наконец рассмотрим сечение EF, равноостоящее от правой точки окружности и правой границы области $S$. И деформации $\overline{\varepsilon}_{11}$ и напряжения $\overline{\sigma}_{11}$ имеют <<двугорбую>> структуру, которая характеризуется снижением уровня деформаций и напряжений в центре области. Однако под действием коромчного эффекта, который приходится со стороны приложенной нагрузки, деформации $\overline{\varepsilon}_{11}$ увеличиваются при приближении к границе области $S$, в то время как напряжений $\overline{\sigma}_{11}$ напротив, становятся меньше и приобретают дополнительные приграничные <<горбы>>. Результаты представлены на рис.~\ref{fig:EFCircleEps}~и~\ref{fig:EFCircleSigma}.
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/EFCircleEps.eps}}
-	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении EF при вариации весов}
+	\center{\includegraphics[width=0.65\textwidth]{pics/circle/EFCircleEps.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении EF при вариации весов при $r_1 = 0.2$}
 	\label{fig:EFCircleEps}
 \end{figure}
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/EFCircleSigma.eps}}
-	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении EF при вариации весов}
+	\center{\includegraphics[width=0.65\textwidth]{pics/circle/EFCircleSigma.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении EF при вариации весов при $r_1 = 0.2$}
 	\label{fig:EFCircleSigma}
 \end{figure}
 
-Теперь рассмотрим случай, когда радиус эллипса $r_1 = 0.1$. В этом случае, деформации $\overline{\varepsilon}_{11}$ на верхнем и нижнем концах эллипса становятся больше, чем в случае, когда $r_1 = r_2$. Также как и в случае с кругом, в нелокальной постановке задачи на границах эллипса смежных с концентраторами возникают отрицательные деформации, которые в два раза больше по модулю при аналогичных весовых параметрах. Результаты представлены на рис. \ref{fig:ellipse12EpsLoc}, \ref{fig:ellipse12EpsNonlocP12R01}, \ref{fig:ellipse12EpsNonlocP12R005} и \ref{fig:ellipse12EpsNonlocP12R02}
+Теперь рассмотрим случай, когда радиус эллипса $r_1 = 0.1$. В этом случае, деформации $\overline{\varepsilon}_{11}$ на верхнем и нижнем концах эллипса становятся больше, чем в случае, когда $r_1 = r_2$. Также как и в случае с кругом, в нелокальной постановке задачи на границах эллипса смежных с концентраторами возникают отрицательные деформации, которые в два раза больше по модулю при аналогичных весовых параметрах. Результаты представлены на рис. \ref{fig:ellipse12EpsLoc}, \ref{fig:ellipse12EpsNonlocP12R01}, \ref{fig:ellipse12EpsNonlocP12R005} иЁ\ref{fig:ellipse12EpsNonlocP12R02}
 
 \begin{figure}[!h]
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12EpsLoc.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0$ и $p_1 = 1/2$}
+	  \caption{Распределение деформаций $\overline{\sigma}_{11}$ при $r = 0$, $p_1 = 1/2$ и $r_1 = 0.1$}
 	  \label{fig:ellipse12EpsLoc}
 	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12EpsNonlocP12R01.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \caption{Распределение деформаций $\overline{\sigma}_{11}$ при $r = 0.1$, $p_1 = 1/2$ и $r_1 = 0.1$}
 	  \label{fig:ellipse12EpsNonlocP12R01}
 	\endminipage\hfill
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12EpsNonlocP12R005.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \caption{Распределение деформаций $\overline{\sigma}_{11}$ при $r = 0.05$, $p_1 = 1/2$ и $r_1 = 0.1$}
 	  \label{fig:ellipse12EpsNonlocP12R005}
 	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12EpsNonlocP12R02.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.2$ и $p_1 = 1/2$}
+	  \caption{Распределение деформаций $\overline{\sigma}_{11}$ при $r = 0.2$, $p_1 = 1/2$ и $r_1 = 0.1$}
 	  \label{fig:ellipse12EpsNonlocP12R02}
 	\endminipage
 \end{figure}
@@ -1121,20 +1114,20 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 В напряжениях $\overline{\sigma}_{11}$ также наблюдается увеличение напряжений в концентраторах. Как и ранее, в нелокальном случае, максимальный уровень напряжений ниже, чем в классическом и можно наблюдать кромочный эффект, который характеризуется снижением напряжений на верхней и нижней границах области. Результаты представлены на рис. \ref{fig:ellipse12SigmaLoc}, \ref{fig:ellipse12SigmaNonlocP12R005}, \ref{fig:ellipse12SigmaNonlocP12R01} и \ref{fig:ellipse12SigmaNonlocP12R02}.
 
 \begin{figure}[!ht]
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12SigmaLoc.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0$ и $p_1 = 1/2$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0$, $p_1 = 1/2$ и $r_1 = 0.1$}
 	  \label{fig:ellipse12SigmaLoc}
 	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12SigmaNonlocP12R01.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.1$, $p_1 = 1/2$ и $r_1 = 0.1$}
 	  \label{fig:ellipse12SigmaNonlocP12R01}
 	\endminipage\hfill
-	\minipage{0.49\textwidth}
+	\minipage{0.45\textwidth}
 	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12SigmaNonlocP12R005.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.05$, $p_1 = 1/2$ и $r_1 = 0.1$}
 	  \label{fig:ellipse12SigmaNonlocP12R005}
 	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12SigmaNonlocP12R02.png}
-	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.2$ и $p_1 = 1/2$}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.2$, $p_1 = 1/2$ и $r_1 = 0.1$}
 	  \label{fig:ellipse12SigmaNonlocP12R02}
 	\endminipage
 \end{figure}
@@ -1148,14 +1141,14 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 где $p$ --- приложенная нагрузка. Таким образом, рассмотрев сечение AB, можем убедиться в том, что для классической постановки задачи зависимость прослеживается. В случае нелокальной постановки задачи, ситуация не столь очевидна, хотя зависимость максимального уровня напряжений от радиуса эллипса сохраняется. На рис. \ref{fig:ABDiffR1Loc} и \ref{fig:ABDiffR1NonLoc} видно, что при удалении от эллиптического выреза, решения сливаются и практически не отличаются друг от друга. В нелокальном случае на нижней границе области наблюдается понижение напряжений.
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABDiffR1Loc.eps}}
-	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении EF при вариации весов}
+	\center{\includegraphics[width=0.6\textwidth]{pics/circle/ABDiffR1Loc.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении AB в классической постановке задачи при вариации радиуса $r_1$}
 	\label{fig:ABDiffR1Loc}
 \end{figure}
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABDiffR1NonLoc.eps}}
-	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении EF при вариации весов}
+	\center{\includegraphics[width=0.6\textwidth]{pics/circle/ABDiffR1NonLoc.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении AB в нелокальной постановке задачи при вариации радиуса $r_1$}
 	\label{fig:ABDiffR1NonLoc}
 \end{figure}
 
@@ -1195,28 +1188,28 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 Рассмотрим деформации $\overline{\varepsilon}_{11}$, возникающие на дуге CD. При уменьшении радиуса $r_1$ уменьшается и длина дуги, но даже в относительных величинах, область на которой происходит концентрация деформаций стремительно сужается и деформации увеличиваются. Аналогичную картину видим и в нелокальном случае, где мы также можем видеть возникающие отрицательные деформации, которые увеличиваются по модулю и ширине при уменьшении радиуса $r_1$. Результаты расчётов задачи в классической постановке представлены на рис. \ref{fig:CDEpsLoc}, в нелокальной постановке на рис. \ref{fig:CDEpsNonLoc}.
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/CDEpsLoc.eps}}
-	\caption{Распределение деформаций $\overline{\varepsilon}_{11}$ в сечении EF при вариации весов}
+	\center{\includegraphics[width=0.6\textwidth]{pics/circle/CDEpsLoc.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{11}$ на дуге CD в классической постановке задачи при вариации радиуса $r_1$}
 	\label{fig:CDEpsLoc}
 \end{figure}
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/CDEpsNonLoc.eps}}
-	\caption{Распределение напряжений $\overline{\sigma}_{11}$ в сечении EF при вариации весов}
+	\center{\includegraphics[width=0.6\textwidth]{pics/circle/CDEpsNonLoc.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{11}$ на дуге CD в классической постановке задачи при вариации радиуса $r_1$}
 	\label{fig:CDEpsNonLoc}
 \end{figure}
 
 Теперь рассмотрим напряжения $\overline{\sigma}_{11}$, концентраторы которых гораздо удобнее рассматривать при обходе дуги CD. Как и в случае с деформациями $\overline{\varepsilon}_{11}$, наблюдается сужение зоны концентрации. В нелокальном случае происходит смягчение концентратора и для наглядности, на рис. \ref{fig:CDSigmaLoc} и \ref{fig:CDSigmaNonLoc} выведены пиковые значения напряжений. Учитывая, что темпы роста как в локальном, так и в нелокальном законках похожи, это говорит лишь о том, что нелокальная теория не способна полностью погасить возникающие концентраторы.
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/CDSigmaLoc.eps}}
-	\caption{Распределение деформаций $\overline{\varepsilon}_{11}$ в сечении EF при вариации весов}
+	\center{\includegraphics[width=0.6\textwidth]{pics/circle/CDSigmaLoc.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{11}$ на дуге CD в классической постановке задачи при вариации радиуса $r_1$}
 	\label{fig:CDSigmaLoc}
 \end{figure}
 
 \begin{figure}[!h]
-	\center{\includegraphics[width=0.7\textwidth]{pics/circle/CDSigmaNonLoc.eps}}
-	\caption{Распределение напряжений $\overline{\sigma}_{11}$ в сечении EF при вариации весов}
+	\center{\includegraphics[width=0.6\textwidth]{pics/circle/CDSigmaNonLoc.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{11}$ на дуге CD в классической постановке задачи при вариации радиуса $r_1$}
 	\label{fig:CDSigmaNonLoc}
 \end{figure}
 
