@@ -1,0 +1,11 @@
+Magister.aux
+Magister.log
+Magister.out
+Magister.synctex.gz
+Magister.toc
+emblema-eps-converted-to.pdf
+pics/data/
+texput.log
+pics/*.pdf 
+pics/T/*.pdf
+pics/circle/*.pdf

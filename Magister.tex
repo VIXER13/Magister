@@ -356,7 +356,7 @@ $S^{(e)}$ --- область элемента $(e)$.
 	\left( p_1 \boldsymbol{K}^{Loc} + p_2 \boldsymbol{K}^{NonLoc} \right) \cdot \boldsymbol{U} = \boldsymbol{P} - \boldsymbol{B},
 \end{gather*}
 \\
-где $\boldsymbol{K}^{Loc}$ и $\boldsymbol{K}^{NonLoc}$ --- матрицы жёсткости локальной и нелокальной постановок соответственно;
+где $\boldsymbol{K}^{Loc}$ и $\boldsymbol{K}^{NonLoc}$ --- матрицы жёсткости для локальной и нелокальной постановок соответственно;
 
 $\boldsymbol{U}$ --- вектор искомых перемещений;
 
@@ -502,29 +502,29 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 	\label{fig:ApproxS}
 \end{figure}
 
-Заметим, что в формуле (\ref{KNonLocApprox2}) поменялся порядок знаков суммирования, а значит и порядок действий. С точки зрения написания вычислительной программы это означает лишь перестановку циклов и введение дополнительных массивов индексов. Для успешного интегрирования, зону аппроксимации лучше всего брать несколько больше, нежели реальная зона нелокального влияния $r$, таким образом возникает шанс того, что все квадратурные узлы, которые попали под зону влияния $S'(\boldsymbol{x})$ будут учтены в расчёте. Естественно, радиус поиска следует определять исходя из грубости сетки, что наглядно продемонстрировано на рис. \ref{fig:ApproxS}.
+Заметим, что в формуле (\ref{KNonLocApprox2}) поменялся порядок знаков суммирования, а значит и порядок действий. С точки зрения написания вычислительной программы это означает лишь перестановку циклов и введение дополнительных массивов индексов. Для успешного интегрирования, зону аппроксимации лучше всего брать несколько больше, нежели реальная зона нелокального влияния $r$, таким образом возникает шанс того, что все квадратурные узлы, которые попали под зону влияния $S'(\boldsymbol{x})$, будут учтены в расчёте. Естественно, радиус поиска следует определять исходя из грубости сетки, что наглядно продемонстрировано на рис. \ref{fig:ApproxS}.
 
 \subsection{Распараллеливание алгоритма}
 
-Учитывая высокую вычислительную сложность подобных задач разумно использовать возможности современных вычислительных систем, а именно параллельные и распределённые вычисления. К сожалению, обход сетки, который задаётся порядком суммирования в (\ref{KLocApprox1}) и (\ref{KNonLocApprox2}) не позволяет эффективно использовать такие возможности, поэтому возникает предложение определить другой порядок обхода сетки, в котором не будет проблем связанных с гонкой данных и который позволит собирать части матрицы независимо сразу в нескольких процессах. Этого можно достичь определив для каждого узла сетки множество элементов $E^{(n)}$, которым он принадлежит. Такой подход позволяет эффективно использовать возможности параллельных и распределённых систем, так как каждая строка матрицы вычисляется независимо от всех остальных. Таким образом формулу (\ref{KLocApprox1}) можно представить в следующей форме
+Учитывая высокую вычислительную сложность подобных задач разумно использовать возможности современных вычислительных систем, а именно параллельные и распределённые вычисления. К сожалению, обход сетки, который задаётся порядком суммирования в (\ref{KLocApprox1}) и (\ref{KNonLocApprox2}) не позволяет эффективно использовать такие возможности, поэтому возникает предложение определить другой порядок обхода сетки, в котором не будет проблем связанных с гонкой данных и который позволит собирать части матрицы независимо сразу в нескольких процессах. Этого можно достичь определив для каждого узла сетки множество элементов $E^{n}$, которым он принадлежит. Такой подход позволяет эффективно использовать возможности параллельных и распределённых систем, так как каждая строка матрицы вычисляется независимо от всех остальных. Таким образом формулу (\ref{KLocApprox1}) можно представить в следующей форме
 \\
 \begin{gather}
 	\label{KLocApprox3}
 	\boldsymbol{K}^{Loc} =
 	\sum\limits_{n \in I^{(e)}}
-	\sum\limits_{(e) \in E^{(n)}}
+	\sum\limits_{(e) \in E^{n}}
 	\sum\limits_{m \in I^{(e)}}
 	\sum\limits_{q \in Q^{(e)}}
 	w_q \boldsymbol{K}_{nm}^{(e)(e)}(\boldsymbol{x}_q, \boldsymbol{x}_q) J_q^{(e)}.
 \end{gather}
 \\
-Формула (\ref{KNonLocApprox2}) приобретает вид
+Для матрицы жёсткости $\boldsymbol{K}^{NonLoc}$ формула (\ref{KNonLocApprox2}) приобретает вид
 \\
 \begin{multline}
 	\label{KNonLocApprox3}
 	\boldsymbol{K}^{NonLoc} =
 	\sum\limits_{n \in I^{(e)}}
-	\sum\limits_{(e) \in E^{(n)}}
+	\sum\limits_{(e) \in E^{n}}
 	\sum\limits_{(e') \in S_h^{(e)}}
 	\sum\limits_{m' \in I^{(e')}}
 	\sum\limits_{q \in Q^{(e)}}
@@ -540,13 +540,25 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 	\label{BArrpox3}
 	\boldsymbol{B} =
 	\sum\limits_{n \in I^{(e)}}
-	\sum\limits_{(e) \in E^{(n)}}
 	\boldsymbol{E}_n \otimes
+	\sum\limits_{(e) \in E^{n}}
 	\sum\limits_{q \in Q^{(e)}}
 	w_q N_{n}^{(e)} (\boldsymbol{x}_q) \boldsymbol{b} (\boldsymbol{x}_q) J_q^{(e)}.
 \end{gather}
 \\
-Заметим, что порядок суммирования при аппроксимации граничных условий второго рода менять не обязательно, так как данная операция, как правило, не является трудозатратной и поэтому её проще всего реализовать согласно классическому представлению добавив лишь дополнительные условия по заполнению в самой программе.
+Для общности, сделаем аналогичную процедуру и для аппроксимации граничных условий второго рода (\ref{PArrpox1})
+\\
+\begin{gather}
+	\label{PArrpox3}
+	\boldsymbol{P} =
+	\sum\limits_{n \in \Gamma_h}
+	\boldsymbol{E}_n \otimes
+	\sum\limits_{(be) \in E^{n}} 
+	\sum\limits_{q \in Q^{(be)}}
+	w_q N_n^{(be)}(\boldsymbol{x}_q) \boldsymbol{p}(\boldsymbol{x}_q) J_q^{(be)}.
+\end{gather}
+\\
+Стоит отметить, что для аппроксимации граничных условий второго рода менять порядок циклов не обязательно, так как данная операция, как правило, не является трудозатратной и поэтому её проще всего реализовать согласно классическому представлению добавив лишь дополнительные условия по заполнению в самой программе.
 
 \subsection{Балансировка данных}
 
@@ -823,14 +835,13 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 
 \subsection{Расчёт на Т-образной области}
 
-Пусть теперь $S \subset [0, 1] \times [0, 1]$ --- T-образная область, изображённая на рис. \ref{fig:Tarea}, с введённой на ней равномерной сеткой $S_h$, состоящей из 30000 квадратичных серендиповых элементов. Коэффициент Пуассона $\nu$ по прежнему равен $0.3$, а безразмерный модуль Юнга $\overline{E} = 21$. Функция нелокального влияния $\varphi = \varphi_{2,1}$. Будем действовать растягивающей силой приложенной к нижнему концу пластины, верхний конец жёстко заделаем
+Пусть теперь $S \subset [0, 1] \times [0, 1]$ --- T-образная область, изображённая на рис. \ref{fig:Tarea}, с введённой на ней равномерной сеткой $S_h$, состоящей из 30000 квадратичных серендиповых элементов. Также на рис. \ref{fig:Tarea} отметим интересующие нас сечения. Коэффициент Пуассона $\nu$ по прежнему равен $0.3$, а безразмерный модуль Юнга $\overline{E} = 21$. Функция нелокального влияния $\varphi = \varphi_{2,1}$. Будем действовать растягивающей силой приложенной к нижнему концу пластины, верхний конец жёстко заделаем
 \\
 \begin{gather*}
 	\boldsymbol{\overline{u}} |_{\overline{x}_2 = 1} = 0,
 	\quad
 	\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 = 0} = -1.
 \end{gather*}
-\\
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.6\textwidth]{pics/T/Tarea.eps}}
@@ -838,28 +849,80 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 	\label{fig:Tarea}
 \end{figure}
 
-Проведём серию расчётов, варьируя основные параметры модели. При рассмотрении деформаций $\overline{\varepsilon}_{22}$, помимо эффектов связанных с прикладываемой нагрузкой, которые были описаны в предыдущем разделе на примере задачи Неймана, возникают и угловые эффекты, которые характеризуются возникающими отрицательными деформациями со стороны верхней части области. Причём, чем больше радиус нелокального влияния $r$, тем шире возникающий эффект, что наглядно показано на рис. \ref{fig:TEpsLoc}, \ref{fig:TEpsNonlocP12R01}, \ref{fig:TEpsNonlocP12R005} и \ref{fig:TEpsNonlocP12R015}.
+Проведём серию расчётов, варьируя основные параметры модели. При рассмотрении деформаций $\overline{\varepsilon}_{22}$, помимо эффектов связанных с прикладываемой нагрузкой, которые были описаны в предыдущем разделе на примере задачи Неймана, возникают и угловые эффекты, которые характеризуются возникающими отрицательными деформациями со стороны верхней части области. Причём, чем больше радиус нелокального влияния $r$, тем шире возникающий эффект, что наглядно показано на рис. \ref{fig:TEpsLoc}, \ref{fig:TEpsNonlocP12R005}, \ref{fig:TEpsNonlocP12R01} и \ref{fig:TEpsNonlocP12R015}.
+
+\begin{comment}
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/TEpsLoc.png}}
+	\caption{Распределение $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 =~1$ и $r =~0$}
+	\label{fig:TEpsLoc}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/TEpsNonlocP12R005.png}}
+	\caption{Распределение $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.05$}
+	\label{fig:TEpsNonlocP12R005}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/TEpsNonlocP12R01.png}}
+	\caption{Распределение $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.1$}
+	\label{fig:TEpsNonlocP12R01}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/TEpsNonlocP12R015.png}}
+	\caption{Распределение $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.15$}
+	\label{fig:TEpsNonlocP12R015}
+\end{figure}
+\end{comment}
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
 	  \includegraphics[width=\textwidth]{pics/T/TEpsLoc.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $p_1 =~1/2$ и $r =~0$}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0$}
 	  \label{fig:TEpsLoc}
 	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R01.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $p_1 =~1/2$ и $r =~0.1$}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.1$}
 	  \label{fig:TEpsNonlocP12R01}
 	\endminipage\hfill
 	\minipage{0.49\textwidth}
 	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R005.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $p_1 =~1/2$ и $r =~0.05$}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.05$}
 	  \label{fig:TEpsNonlocP12R005}
 	  \includegraphics[width=\textwidth]{pics/T/TEpsNonlocP12R015.png}
-	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $p_1 =~1/2$ и $r =~0.15$}
+	  \caption{Распределение $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.15$}
 	  \label{fig:TEpsNonlocP12R015}
 	\endminipage
 \end{figure}
 
-Схожие угловые эффекты в деформациях $\overline{\varepsilon}_{22}$ ранее были описаны в книге Андреева \cite{Andreev} после проведения серии натурных экспериментов. В книге Андреев также утверждает, что интегральная нагрузка напряжений $\overline{\sigma}_{22}$ в сечениях близких к ступенчатому переходу может отличаться от прикладываемой нагрузки, однако данный эффект не удалось обнаружить численно, так как во всех сечениях, даже самых близких к ступенчатому переходу, интегральная нагрузка сохраняется. Однако, стоит заметить, максимальное значение напряжений в концентраторах уменьшилось. Результаты с распределением напряжений $\overline{\sigma}_{22}$ продемонстрированы на рис. \ref{fig:TSigmaLoc}, \ref{fig:TSigmaNonlocP12R01}, \ref{fig:TSigmaNonlocP12R005} и \ref{fig:TSigmaNonlocP12R015}.
+Схожие угловые эффекты в деформациях $\overline{\varepsilon}_{22}$ ранее были описаны в книге Андреева \cite{Andreev} после проведения серии натурных экспериментов. В книге Андреев также утверждает, что интегральная нагрузка напряжений $\overline{\sigma}_{22}$ в сечениях близких к ступенчатому переходу может отличаться от прикладываемой нагрузки, однако данный эффект не удалось обнаружить численно, так как во всех сечениях, даже самых близких к ступенчатому переходу, интегральная нагрузка сохраняется. Однако, стоит заметить, максимальное значение напряжений в концентраторах уменьшилось. Результаты с распределением напряжений $\overline{\sigma}_{22}$ продемонстрированы на рис. \ref{fig:TSigmaLoc}, \ref{fig:TSigmaNonlocP12R005}, \ref{fig:TSigmaNonlocP12R01} и \ref{fig:TSigmaNonlocP12R015}.
+
+\begin{comment}
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/TSigmaLoc.png}}
+	\caption{Распределение $\overline{\sigma}_{22}$ в Т-образной области при $p_1 =~1$ и $r =~0$}
+	\label{fig:TSigmaLoc}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/TSigmaNonlocP12R005.png}}
+	\caption{Распределение $\overline{\sigma}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.05$}
+	\label{fig:TSigmaNonlocP12R005}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/TSigmaNonlocP12R01.png}}
+	\caption{Распределение $\overline{\sigma}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.1$}
+	\label{fig:TSigmaNonlocP12R01}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.6\textwidth]{pics/T/TSigmaNonlocP12R015.png}}
+	\caption{Распределение $\overline{\sigma}_{22}$ в Т-образной области при $p_1 =~1/2$ и $r =~0.15$}
+	\label{fig:TSigmaNonlocP12R015}
+\end{figure}
+\end{comment}
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
@@ -929,7 +992,7 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 Рассмотрим задачу Кирша \cite{Birger} с обобщением на эллиптические вырезы на области $S \subset [-1, 1] \times [-1, 1]$, со следующими граничными условиями
 \\
 \begin{gather*}
-	\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 = -1} = -1
+	\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 = -1} = -1,
 	\quad
 	\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 =  1} =  1.
 \end{gather*}
@@ -954,18 +1017,18 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/circle/circleEpsLoc.png}
+	  \includegraphics[width=\textwidth]{pics/circle/CircleEpsLoc.png}
 	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0$ и $p_1 = 1/2$}
 	  \label{fig:circleEpsLoc}
-	  \includegraphics[width=\textwidth]{pics/circle/circleEpsNonlocP12R01.png}
+	  \includegraphics[width=\textwidth]{pics/circle/CircleEpsNonlocP12R01.png}
 	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.1$ и $p_1 = 1/2$}
 	  \label{fig:circleEpsNonlocP12R01}
 	\endminipage\hfill
 	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/circle/circleEpsNonlocP12R005.png}
+	  \includegraphics[width=\textwidth]{pics/circle/CircleEpsNonlocP12R005.png}
 	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.05$ и $p_1 = 1/2$}
 	  \label{fig:circleEpsNonlocP12R005}
-	  \includegraphics[width=\textwidth]{pics/circle/circleEpsNonlocP12R02.png}
+	  \includegraphics[width=\textwidth]{pics/circle/CircleEpsNonlocP12R02.png}
 	  \caption{Распределение $\overline{\varepsilon}_{22}$ при $r =~0.2$ и $p_1 = 1/2$}
 	  \label{fig:circleEpsNonlocP12R02}
 	\endminipage
@@ -975,24 +1038,24 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 
 \begin{figure}[!hb]
 	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/circle/circleSigmaLoc.png}
+	  \includegraphics[width=\textwidth]{pics/circle/CircleSigmaLoc.png}
 	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
 	  \label{fig:circleSigmaLoc}
-	  \includegraphics[width=\textwidth]{pics/circle/circleSigmaNonlocP12R01.png}
+	  \includegraphics[width=\textwidth]{pics/circle/CircleSigmaNonlocP12R01.png}
 	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
 	  \label{fig:circleSigmaNonlocP12R01}
 	\endminipage\hfill
 	\minipage{0.49\textwidth}
-	  \includegraphics[width=\textwidth]{pics/circle/circleSigmaNonlocP12R005.png}
+	  \includegraphics[width=\textwidth]{pics/circle/CircleSigmaNonlocP12R005.png}
 	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
 	  \label{fig:circleSigmaNonlocP12R005}
-	  \includegraphics[width=\textwidth]{pics/circle/circleSigmaNonlocP12R02.png}
+	  \includegraphics[width=\textwidth]{pics/circle/CircleSigmaNonlocP12R02.png}
 	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
 	  \label{fig:circleSigmaNonlocP12R02}
 	\endminipage
 \end{figure}
 
-Наконец расмотрим интересуемые нас сечения при вариации весового параметра $p_1$. В сечении AB качественных различий в деформациях $\overline{\varepsilon}_{11}$ нет, но в нелокальном случае, близи отверстия наблюдается их увеличение. Напряжения $\overline{\sigma}_{11}$ напротив, уменьшают своё значение как вблизи отверстия, так и в близи нижней границы области, но при этом в центре области напряжения в среднем выше, что объясняет равенство интегралов приложенной нагрузки и нагрузки взятой в сечениях. Результаты представлены на рис. \ref{fig:ABCircleEps} и \ref{fig:ABCircleSigma}.
+Наконец расмотрим интересуемые нас сечения при вариации весового параметра $p_1$. В сечении AB качественных различий в деформациях $\overline{\varepsilon}_{11}$ нет, но в нелокальном случае, вблизи отверстия наблюдается их увеличение. Напряжения $\overline{\sigma}_{11}$ напротив, уменьшают своё значение как вблизи отверстия, так и в близи нижней границы области, но при этом в центре области напряжения в среднем выше, что объясняет равенство интегралов приложенной нагрузки и нагрузки взятой в сечениях. Результаты представлены на рис. \ref{fig:ABCircleEps} и \ref{fig:ABCircleSigma}.
 
 \begin{figure}[!h]
 	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABCircleEps.eps}}
@@ -1034,44 +1097,67 @@ $(be) \in \Gamma_h$ --- одномерные элементы заданные на границе;
 	\label{fig:EFCircleSigma}
 \end{figure}
 
-%\begin{figure}[!hb]
-%	\minipage{0.49\textwidth}
-%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsLoc.png}
-%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
-%	  \label{fig:ellipse12EpsLoc}
-%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R01.png}
-%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
-%	  \label{fig:ellipse12EpsNonlocP12R01}
-%	\endminipage\hfill
-%	\minipage{0.49\textwidth}
-%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R005.png}
-%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
-%	  \label{fig:ellipse12EpsNonlocP12R005}
-%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12EpsNonlocP12R02.png}
-%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
-%	  \label{fig:ellipse12EpsNonlocP12R02}
-%	\endminipage
-%\end{figure}
+Теперь рассмотрим случай, когда радиус эллипса $r_1 = 0.1$. В этом случае, деформации $\overline{\varepsilon}_{11}$ на верхнем и нижнем концах эллипса становятся больше, чем в случае, когда $r_1 = r_2$. Также как и в случае с кругом, в нелокальной постановке задачи на границах эллипса смежных с концентраторами возникают отрицательные деформации, которые в два раза больше по модулю при аналогичных весовых параметрах. Результаты представлены на рис. \ref{fig:ellipse12EpsLoc}, \ref{fig:ellipse12EpsNonlocP12R005}, \ref{fig:ellipse12EpsNonlocP12R01} и \ref{fig:ellipse12EpsNonlocP12R02}
 
+\begin{figure}[!h]
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12EpsLoc.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12EpsLoc}
+	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12EpsNonlocP12R01.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12EpsNonlocP12R01}
+	\endminipage\hfill
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12EpsNonlocP12R005.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12EpsNonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12EpsNonlocP12R02.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.2$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12EpsNonlocP12R02}
+	\endminipage
+\end{figure}
 
-%\begin{figure}[!hb]
-%	\minipage{0.49\textwidth}
-%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaLoc.png}
-%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0$ и $p_1 = 1/2$}
-%	  \label{fig:ellipse12SigmaLoc}
-%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R01.png}
-%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.1$ и $p_1 = 1/2$}
-%	  \label{fig:ellipse12SigmaNonlocP12R01}
-%	\endminipage\hfill
-%	\minipage{0.49\textwidth}
-%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R005.png}
-%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.05$ и $p_1 = 1/2$}
-%	  \label{fig:ellipse12SigmaNonlocP12R005}
-%	  \includegraphics[width=\textwidth]{pics/ellipse12/ellipse12SigmaNonlocP12R02.png}
-%	  \caption{Распределение напряжений $\overline{\sigma}_{22}$ при $r = 0.2$ и $p_1 = 1/2$}
-%	  \label{fig:ellipse12SigmaNonlocP12R02}
-%	\endminipage
-%\end{figure}
+В напряжениях $\overline{\sigma}_{11}$ также наблюдается увеличение напряжений в концентраторах. Как и ранее, в нелокальном случае, максимальный уровень напряжений парадает и можно наблюдать кромочный эффект, который характеризуется снижением напряжений на верхней и нижней границах области. Результаты представлены на рис. \ref{fig:ellipse12SigmaLoc}, \ref{fig:ellipse12SigmaNonlocP12R005}, \ref{fig:ellipse12SigmaNonlocP12R01} и \ref{fig:ellipse12SigmaNonlocP12R02}.
+
+\begin{figure}[!ht]
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12SigmaLoc.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12SigmaLoc}
+	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12SigmaNonlocP12R01.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.1$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12SigmaNonlocP12R01}
+	\endminipage\hfill
+	\minipage{0.49\textwidth}
+	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12SigmaNonlocP12R005.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.05$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12SigmaNonlocP12R005}
+	  \includegraphics[width=\textwidth]{pics/circle/Ellipse12SigmaNonlocP12R02.png}
+	  \caption{Распределение напряжений $\overline{\sigma}_{11}$ при $r = 0.2$ и $p_1 = 1/2$}
+	  \label{fig:ellipse12SigmaNonlocP12R02}
+	\endminipage
+\end{figure}
+
+Рассмотрим более детально разницу решений при вариации радиуса эллиптического выреза $r_1$. Ясно, что при любом радиусе $r_1$ максимальные напряжение $\overline{\sigma}_{11}$ находятся на верхней и нижней точках эллипса и для классического случая, на основе теоретических исследований \cite{Birger} была получена следующая зависимость
+\\
+\begin{gather*}
+	\sigma_{11}^{max} \approx \left( 1 + 2 \dfrac{r_2}{r_1} \right) p,
+\end{gather*}
+\\
+где $p$ --- приложенная нагрузка. Таким образом, рассмотрев сечение AB, можем убедиться в том, что для классической постановки задачи зависимость прослеживается.
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABDiffR1Loc.eps}}
+	\caption{Распределение деформаций $\overline{\varepsilon}_{22}$ в сечении EF при вариации весов}
+	\label{fig:EFCircleEps}
+\end{figure}
+
+\begin{figure}[!h]
+	\center{\includegraphics[width=0.7\textwidth]{pics/circle/ABDiffR1NonLoc.eps}}
+	\caption{Распределение напряжений $\overline{\sigma}_{22}$ в сечении EF при вариации весов}
+	\label{fig:EFCircleSigma}
+\end{figure}
 
 
 \newpage
