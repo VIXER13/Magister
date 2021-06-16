@@ -243,28 +243,8 @@
 \end{frame}
 
 
+
 \begin{frame}
-
-	%\begin{gather*}
-		%\label{BArrpox3}
-	%	\widehat{\text{\textbf{B}}} =
-	%	\sum\limits_{n \in I^{(e)}}
-	%	\boldsymbol{E}_n \otimes
-	%	\sum\limits_{(e) \in E^{n}}
-	%	\sum\limits_{q \in Q^{(e)}}
-	%	w_q N_{n}^{(e)} (\boldsymbol{x}_q) \boldsymbol{b} (\boldsymbol{x}_q) J_q^{(e)}.
-	%\end{gather*}
-	
-	%\begin{gather*}
-	%	\label{PArrpox3}
-	%	\widehat{\text{\textbf{P}}} =
-	%	\sum\limits_{n \in \Gamma_h}
-	%	\boldsymbol{E}_n \otimes
-	%	\sum\limits_{(be) \in E^{n}} 
-	%	\sum\limits_{q \in Q^{(be)}}
-	%	w_q N_n^{(be)}(\boldsymbol{x}_q) \boldsymbol{p}(\boldsymbol{x}_q) J_q^{(be)}.
-	%\end{gather*}
-
 	\quad\quad Формулы (\ref{KLocApprox1}) и (\ref{KNonLocApprox2}) не пригодны для параллельных и распределённых вычислений. Чтобы сделать их пригодными для каждого узла $n$ введём множество элементов $E^n$, которым он принадлежит. Тогда аппроксимацию локальной и нелокальной матриц жёсткости можно переписать в следующем виде
 	\begin{gather*}
 		%\label{KLocApprox3}
@@ -372,7 +352,7 @@
 		    \includegraphics[width=\linewidth]{pics/MemorySpeedBalancing.eps}
 		    \caption{} \label{fig:MemorySpeedBalancing}
 		\end{subfigure}
-	    \caption{Распределение времени счёта (а) и объёмов используемой оперативной памяти (б) при балансировке объёмов вычислений}
+	    \caption{Распределение времени счёта (a) и объёмов используемой оперативной памяти (b) при балансировке объёмов вычислений}
 	    \label{fig:SpeedBalancingHist}
 	\end{figure}
 \end{frame}
@@ -408,7 +388,7 @@
     		\includegraphics[width=\linewidth]{pics/MemoryMemoryBalancing.eps}
     		\caption{} \label{fig:MemoryMemoryBalancing}
   		\end{subfigure}
-  		\caption{Распределение времени счёта (а) и объёмов используемой оперативной памяти (б) при балансировке количества элементов матрицы}
+  		\caption{Распределение времени счёта (a) и объёмов используемой оперативной памяти (b) при балансировке количества элементов матрицы}
   		\label{fig:MemoryBalancingHist}
 	\end{figure}
 \end{frame}
@@ -423,7 +403,11 @@
 	\end{figure}
 \end{frame}
 
+
+
 \section{Принцип Сен-Венана}
+
+
 
 \begin{frame}{Принцип Сен-Венана}	
 	\quad\quad Рассмотрим область $S = [0,10] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из 64000 квадратичных серендиповых элементов. Поставим граничные условия
@@ -507,6 +491,7 @@
 
 
 \begin{frame}{Т-образная область}
+	\quad\quad Теперь рассмотрим Т-образную область $S \subset [0,1] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из 30000 квадратичных серендиповых элементов. Поставим следующие граничные условия
 	\begin{gather*}
 		\boldsymbol{\overline{u}} |_{\overline{x}_2 = 1} = 0,
 		\quad
@@ -524,26 +509,192 @@
 
 \begin{frame}
 	\begin{figure}[!hb]
-  \begin{subfigure}{0.35\textwidth}
-    \includegraphics[width=\linewidth]{pics/T/TEpsLoc.png}
-    \caption{} \label{fig:TEpsLoc}
-  \end{subfigure}
-  \begin{subfigure}{0.35\textwidth}
-    \includegraphics[width=\linewidth]{pics/T/TEpsNonlocP12R005.png}
-    \caption{} \label{fig:TEpsNonlocP12R005}
-  \end{subfigure}
-  \\
-  \begin{subfigure}{0.35\textwidth}
-    \includegraphics[width=\linewidth]{pics/T/TEpsNonlocP12R01.png}
-    \caption{} \label{fig:TEpsNonlocP12R01}
-  \end{subfigure}
-  \begin{subfigure}{0.35\textwidth}
-    \includegraphics[width=\linewidth]{pics/T/TEpsNonlocP12R015.png}
-    \caption{} \label{fig:TEpsNonlocP12R015}
-  \end{subfigure}
-  \caption{Распределение деформации $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 = 1/2$ и б) $r = 0.05$; в) $r = 0.1$; г) $r = 0.15$. Случай а) соответствует классической постановке задачи}
-  \label{fig:TEps}
-\end{figure}
+    	\begin{subfigure}{0.4\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/T/TEpsLoc.png}
+	    	\vspace{-0.5cm}
+    		\caption{} \label{fig:TEpsLoc}
+    	\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/T/TEpsNonlocP12R005.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:TEpsNonlocP12R005}
+  		\end{subfigure}
+  		\\
+  		\vspace{-0.25cm}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/T/TEpsNonlocP12R01.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:TEpsNonlocP12R01}
+  		\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/T/TEpsNonlocP12R015.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:TEpsNonlocP12R015}
+  		\end{subfigure}
+  		\vspace{-0.5cm}
+  		\caption{Распределение деформации $\overline{\varepsilon}_{22}$ в Т-образной области при $p_1 = 1/2$ и (a) $r = 0$; (b) $r = 0.05$; (c) $r = 0.1$; (d) $r = 0.15$}
+  		\label{fig:TEps}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{figure}[!hb]
+    	\begin{subfigure}{0.49\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/presentation/AndreevEps.png}
+	    	\vspace{-0.5cm}
+    		\caption{} \label{fig:AndreevEps}
+    	\end{subfigure}
+  		\begin{subfigure}{0.49\textwidth}
+    		\includegraphics[width=\linewidth]{pics/T/TEpsNonlocP12R015.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:TEpsNonlocP12R015Comp}
+  		\end{subfigure}
+  		\caption{Сравнение распределения деформации в эксперименте (a) и численном расчёте (b) при $p_1 = 1/2$ и $r = 0.15$}
+  		\label{fig:ComparsionEps}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{figure}[!hb]
+    	\begin{subfigure}{0.4\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/T/TSigmaLoc.png}
+	    	\vspace{-0.5cm}
+    		\caption{} \label{fig:TSigmaLoc}
+    	\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/T/TSigmaNonlocP12R005.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:TSigmaNonlocP12R005}
+  		\end{subfigure}
+  		\\
+  		\vspace{-0.25cm}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/T/TSigmaNonlocP12R01.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:TSigmaNonlocP12R01}
+  		\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/T/TSigmaNonlocP12R015.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:TSigmaNonlocP12R015}
+  		\end{subfigure}
+  		\vspace{-0.5cm}
+  		\caption{Распределение напряжения $\overline{\sigma}_{22}$ в Т-образной области при $p_1 = 1/2$ и (a) $r = 0$; (b) $r = 0.05$; (c) $r = 0.1$; (d) $r = 0.15$}
+  		\label{fig:TSigma}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{figure}[!hb]
+    	\begin{subfigure}{0.49\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/presentation/AndreevSigma.png}
+	    	\vspace{-0.5cm}
+    		\caption{} \label{fig:AndreevSigma}
+    	\end{subfigure}
+  		\begin{subfigure}{0.49\textwidth}
+    		\includegraphics[width=\linewidth]{pics/T/TSigmaNonlocP12R015.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:TSigmaNonlocP12R015Comp}
+  		\end{subfigure}
+  		\caption{Сравнение распределения напряжения в эксперименте (a) и численном расчёте (b) при $p_1 = 1/2$ и $r = 0.15$}
+  		\label{fig:ComparsionSigma}
+	\end{figure}
+\end{frame}
+
+
+
+\section{Задача Кирша}
+
+
+
+\begin{frame}{Задача Кирша}
+	\quad\quad Рассмотрим задачу Кирша на области $S \subset [-1, 1] \times [-1, 1]$ с обобщением на эллиптические вырезы, со следующими граничными условиями
+	\begin{gather*}
+		\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 = -1} = -1,
+		\quad
+		\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 =  1} =  1.
+	\end{gather*}
+	Также добавим два дополнительных условия, которые зафиксируют область относительно центра масс области по каждой из осей и дадут симметрию решению
+	\begin{gather*}
+		\overline{u}_i |_{\overline{x}_i = 0} = 0, \quad i = \overline{1, 2}.
+	\end{gather*}
+	
+  	\vspace{-0.25cm}
+	\begin{figure}[!h]
+		\center{\includegraphics[width=0.4\textwidth]{pics/EllipticalCut.eps}}
+		\caption{Область с эллиптическим вырезом, заданными нагружениями и интересуемыми сечениями}
+		\label{fig:EllipticalCut}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{figure}[!hb]
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CircleEpsLoc.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:CircleEpsLoc}
+  		\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CircleEpsNonlocP12R005.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:CircleEpsNonlocP12R005}
+  		\end{subfigure}
+  		\\
+  		\vspace{-0.25cm}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CircleEpsNonlocP12R01.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:CircleEpsNonlocP12R01}
+  		\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CircleEpsNonlocP12R02.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:CircleEpsNonlocP12R02}
+  		\end{subfigure}
+  		\vspace{-0.5cm}
+  		\caption{Распределение деформации $\overline{\varepsilon}_{11}$ в области с круговым вырезом при $p_1 = 1/2$ и (a) $r = 0$; (b) $r = 0.05$; (c) $r = 0.1$; (d) $r = 0.2$}
+	  	\label{fig:CircleEps}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{figure}[!hb]
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CircleSigmaLoc.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:CircleSigmaLoc}
+  		\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CircleSigmaNonlocP12R005.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:CircleSigmaNonlocP12R005}
+  		\end{subfigure}
+  		\\
+  		\vspace{-0.25cm}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CircleSigmaNonlocP12R01.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:CircleSigmaNonlocP12R01}
+  		\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CircleSigmaNonlocP12R02.png}
+    		\vspace{-0.5cm}
+    		\caption{} \label{fig:CircleSigmaNonlocP12R02}
+  		\end{subfigure}
+  		\vspace{-0.5cm}
+  		\caption{Распределение деформации $\overline{\sigma}_{11}$ в области с круговым вырезом при $p_1 = 1/2$ и (a) $r = 0$; (b) $r = 0.05$; (c) $r = 0.1$; (d) $r = 0.2$}
+	  	\label{fig:CircleEps}
+	\end{figure}
 \end{frame}
 
 
