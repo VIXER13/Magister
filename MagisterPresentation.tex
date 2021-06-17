@@ -96,7 +96,7 @@
 	\end{gather*}
 	где $E$ --- модуль Юнга; $\nu$ --- коэффициент Пуассона.
 
-	\quad\quad В расчётах будем использовать функцию нелокального влияния $\varphi$
+	\quad\quad В расчётах будем использовать функцию нелокального влияния
 	\begin{gather*}
 		\varphi(|\boldsymbol{x} - \boldsymbol{x}'|) =
 		\begin{cases}
@@ -278,7 +278,7 @@
 
 
 \begin{frame}{Результаты распараллеливания}
-	\quad\quad Проведём серию расчётов на области $S = [0,1] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из квадратичных серендиповых элементов. Подробность сетки, параметры и результаты расчёта указаны в табл. \ref{Tab:OpenMP}.
+	\quad\quad Проведём серию расчётов на гибридном вычислительном кластере К-10, где на каждом узле стоит по 128 Гб оперативной памяти и по два процессора Intel Xeon E5-2660. В качестве тестовой задачи возьмём задачу на области $S = [0,1] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из квадратичных серендиповых элементов. Подробность сетки, параметры и результаты расчёта указаны в табл. \ref{Tab:OpenMP}.
 	\begin{table}[H]
 		\centering
 		\begin{tabular}{|c|c|c|c|c|c|}
@@ -637,63 +637,62 @@
 
 \begin{frame}
 	\begin{figure}[!hb]
-  		\begin{subfigure}{0.4\textwidth}
-    		\includegraphics[width=\linewidth]{pics/circle/CircleEpsLoc.png}
+    	\begin{subfigure}{0.49\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/circle/CDCircleEps.eps}
+	    	\vspace{-0.5cm}
+    		\caption{} \label{fig:CDCircleEps}
+    	\end{subfigure}
+  		\begin{subfigure}{0.49\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CDCircleSigma.eps}
     		\vspace{-0.5cm}
-    		\caption{} \label{fig:CircleEpsLoc}
+    		\caption{} \label{fig:CDCircleSigma}
   		\end{subfigure}
-  		\begin{subfigure}{0.4\textwidth}
-    		\includegraphics[width=\linewidth]{pics/circle/CircleEpsNonlocP12R005.png}
-    		\vspace{-0.5cm}
-    		\caption{} \label{fig:CircleEpsNonlocP12R005}
-  		\end{subfigure}
-  		\\
-  		\vspace{-0.25cm}
-  		\begin{subfigure}{0.4\textwidth}
-    		\includegraphics[width=\linewidth]{pics/circle/CircleEpsNonlocP12R01.png}
-    		\vspace{-0.5cm}
-    		\caption{} \label{fig:CircleEpsNonlocP12R01}
-  		\end{subfigure}
-  		\begin{subfigure}{0.4\textwidth}
-    		\includegraphics[width=\linewidth]{pics/circle/CircleEpsNonlocP12R02.png}
-    		\vspace{-0.5cm}
-    		\caption{} \label{fig:CircleEpsNonlocP12R02}
-  		\end{subfigure}
-  		\vspace{-0.5cm}
-  		\caption{Распределение деформации $\overline{\varepsilon}_{11}$ в области с круговым вырезом при $p_1 = 1/2$ и (a) $r = 0$; (b) $r = 0.05$; (c) $r = 0.1$; (d) $r = 0.2$}
-	  	\label{fig:CircleEps}
+  		\caption{Распределение (a) деформации $\overline{\varepsilon}_{22}$ и (b) напряжения $\overline{\sigma}_{22}$ на дуге CD при $R_1 = R_2$}
+  		\label{fig:CDCircle}
 	\end{figure}
 \end{frame}
 
 
 
 \begin{frame}
-	\begin{figure}[!hb]
-  		\begin{subfigure}{0.4\textwidth}
-    		\includegraphics[width=\linewidth]{pics/circle/CircleSigmaLoc.png}
-    		\vspace{-0.5cm}
-    		\caption{} \label{fig:CircleSigmaLoc}
-  		\end{subfigure}
-  		\begin{subfigure}{0.4\textwidth}
-    		\includegraphics[width=\linewidth]{pics/circle/CircleSigmaNonlocP12R005.png}
-    		\vspace{-0.5cm}
-    		\caption{} \label{fig:CircleSigmaNonlocP12R005}
-  		\end{subfigure}
-  		\\
-  		\vspace{-0.25cm}
-  		\begin{subfigure}{0.4\textwidth}
-    		\includegraphics[width=\linewidth]{pics/circle/CircleSigmaNonlocP12R01.png}
-    		\vspace{-0.5cm}
-    		\caption{} \label{fig:CircleSigmaNonlocP12R01}
-  		\end{subfigure}
-  		\begin{subfigure}{0.4\textwidth}
-    		\includegraphics[width=\linewidth]{pics/circle/CircleSigmaNonlocP12R02.png}
-    		\vspace{-0.5cm}
-    		\caption{} \label{fig:CircleSigmaNonlocP12R02}
-  		\end{subfigure}
-  		\vspace{-0.5cm}
-  		\caption{Распределение деформации $\overline{\sigma}_{11}$ в области с круговым вырезом при $p_1 = 1/2$ и (a) $r = 0$; (b) $r = 0.05$; (c) $r = 0.1$; (d) $r = 0.2$}
-	  	\label{fig:CircleEps}
+	\quad\quad Согласно теоретическим выкладкам, в классическом случае максимальный уровень напряжения в задаче Кирша будет находиться в точка B и D и равен
+	\begin{gather*}
+		\sigma_{11}^{max} \approx \left( 1 + 2 \dfrac{R_2}{R_1} \right) \widetilde{\sigma}.
+	\end{gather*}
+	Однако в нелокальном случае возникает некоторый множитель $\alpha$, который зависит от весовых параметров и преобразует эту формулу
+	\begin{gather*}
+		\sigma_{11}^{max} \approx \alpha(p_1) \left( 1 + 2 \dfrac{R_2}{R_1} \right) \widetilde{\sigma}.
+	\end{gather*}
+
+	\begin{table}[!h]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			Длина      & \multicolumn{4}{c|}{Значение весового параметра} \\
+			\cline{2-5}
+			полуоси $R_1$ & $p_1 = 1$ & $p_1 = 2/3$ & $p_1 = 1/2$ & $p_1 = 1/3$ \\
+			\hline
+			$R_2$         & 3.4       & 2.8         & 2.5         & 2.2 \\
+			\hline
+			$2/3 R_2$     & 4.4       & 3.7         & 3.3         & 2.9 \\
+			\hline
+			$1/2 R_2$     & 5.4       & 4.7         & 4.1         & 3.6 \\
+			\hline
+			$1/3 R_2$     & 7.6       & 6.5         & 5.7         & 5  \\
+			\hline
+		\end{tabular}
+		\caption{Пиковые значения напряжения $\overline{\sigma}_{11}$ при различных длинах полуоси $R_1$ и весовых параметрах. В нелокальном случае считаем $r = 0.1$}
+		\label{Tab:MaxStress}
+	\end{table}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{figure}[!h]
+		\center{\includegraphics[width=0.65\textwidth]{pics/MaxSigma.eps}}
+		\caption{Пиковые значения напряжения $\overline{\sigma}_{11}$ при различных весовых параметрах и соотношениях длин полуосей}
+		\label{fig:MaxSigma}
 	\end{figure}
 \end{frame}
 
