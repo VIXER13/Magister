@@ -12,6 +12,9 @@
 \usepackage{ragged2e}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{comment}
+\usepackage{rotating}
+\usepackage{array}
 
 \usetheme{CambridgeUS}
 %\useinnertheme{circles}   %внутренняя тема
@@ -27,7 +30,7 @@
 
 \titlegraphic{\includegraphics[width=3cm]{emblema.eps}}
 \title[]{Разработка математических моделей теории нелокальной упругости и их численное исследование и анализ}
-\author{Выполнил студент группы ФН2-42М Соколов~А.А. \\ Научный руководитель профессор кафедры ФН2 Кувыркин~Г.Н.}
+\author{Выполнил студент группы ФН2-42М Соколов~А.А. \\ Научный руководитель д.т.н., профессор, заведующий кафедрой ФН2 Кувыркин~Г.Н.}
 \institute[]{МГТУ им. Н.Э.~Баумана}
 \date{23 июня 2021 г.}
 
@@ -41,18 +44,45 @@
 
 
 
+\section{Введение}
+
+
+
+\begin{frame}{Введение}
+	\begin{figure}[!h]
+    	\begin{subfigure}{0.27\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/presentation/Al.png}
+    		\caption{} \label{fig:LongRectStress11VarP}
+    	\end{subfigure}
+  		\begin{subfigure}{0.3\textwidth}
+    		\includegraphics[width=\linewidth]{pics/presentation/Atoms.png}
+    		\caption{} \label{fig:LongRectStress11VarR}
+  		\end{subfigure}
+  		\begin{subfigure}{0.32\textwidth}
+    		\includegraphics[width=\linewidth]{pics/presentation/Kremnezem.png}
+    		\caption{} \label{fig:LongRectStress11VarR}
+  		\end{subfigure}
+  		\vspace{-0.5cm}
+  		\caption{Атомная решётка структурно-чувствительных материалов}
+  		\label{fig:LongRectStress11}
+	\end{figure}
+	
+	\quad\quad Классические модели механики сплошной среды не применимы к материалам с микро- и наноструктурой, так как они не учитывают масштабных эффектов. Для описания подобных эффектов существует множество моделей, однако, наибольший интерес представляют те, в которых основные соотношения имеют ту же формулировку, что и классические. Одной из таких моделей является нелокальной модель Эрингена.
+	
+	%\quad\quad Использование классических математических моделей для структурно-чувствительных материалов некорректно, так как классические модели не учитывают масштабных эффектов, которые в телах малых размеров становятся сопоставимыми с размерами самого тела и начинают оказывать существенное влияние. Существует множество различных моделей, которые описывают подобные эффекты, однако наибольший интерес представляют модели, в которых основные соотношения имеют ту же формулировку, что и классические. Одной из таких является нелокальной модель Эрингена, где определяющие соотношения имеют тот же вид, что и в классическом подходе, но представлены в интегро-дифференциальном форме. Такая формулировка открывает возможности для использования хорошо изученных численных методов, в частности метода конечных элементов.
+\end{frame}
+
+
+
 \section{Постановка задачи}
 
 
 
 \begin{frame}{Постановка задачи}
-	\quad\quad Рассмотрим уравнение равновесия сплошной среды
+	Определяющие соотношения имеют вид
 	\begin{gather}
 		\label{EquilibriumEquation}
-		\nabla \cdot \boldsymbol{\widehat{\sigma}} + \boldsymbol{b} = \boldsymbol{0},
-	\end{gather}
-	где тензор напряжений $\boldsymbol{\widehat{\sigma}}$ определяется следующим образом
-	\begin{gather}
+		\nabla \cdot \boldsymbol{\widehat{\sigma}} + \boldsymbol{b} = \boldsymbol{0}, \\
 		\label{DefineSigma}
 		\boldsymbol{\widehat{\sigma}} =
 		p_1 \widehat{\text{\textbf{C}}} \cdot \cdot \boldsymbol{\widehat{\varepsilon}} +
@@ -61,41 +91,15 @@
 		\quad
 		\boldsymbol{x'} \in S'(\boldsymbol{x}),
 	\end{gather}
-	где $p_1 + p_2 = 1$, причём $p_1 > 0$ и $p_2 \geqslant 0$; 
-	
-	$\varphi$ --- некоторая нормированная положительная функция в области $S'(\boldsymbol{x})$;
-	
-	$S'(\boldsymbol{x})$ --- область нелокального влияния.
-	
-	\quad\quad Будем рассматривать кинематические и силовые граничные условия
+	где $p_1 + p_2 = 1$, причём $p_1 > 0$ и $p_2 \geqslant 0$; $\varphi$ --- некоторая нормированная положительная функция в области $S'(\boldsymbol{x})$; $S'(\boldsymbol{x})$ --- область нелокального влияния.
 	\begin{gather*}
-		\boldsymbol{u}|_{\Gamma_1} = \boldsymbol{d}(\boldsymbol{x}), 
-		\quad
-		\boldsymbol{\widehat{\sigma}} \cdot \boldsymbol{n}|_{\Gamma_2} = \boldsymbol{p}(\boldsymbol{x}),
-	\end{gather*}
-	где $\Gamma_1, \Gamma_2 \subset \partial S$ и $\Gamma_1 \cap \Gamma_2 = \emptyset$.
-\end{frame}
-
-
-
-\begin{frame}
-	\quad\quad Положим, что перемещения малы, поэтому для определения компонент тензора деформаций $\boldsymbol{\widehat{\varepsilon}}$ воспользуемся соотношением Коши
-	\begin{gather*}
-		\label{DefineStrains}
-		\varepsilon_{ij} = \dfrac{1}{2} \left( u_{i, j} + u_{j, i} \right), \quad i, j = \overline{1, 2},
-	\end{gather*}
-	где $u_i$, $i = \overline{1, 2}$ --- компоненты вектора перемещения $\boldsymbol{u}$.
-	
-	\quad\quad Считаем, что рассматриваемый случай соответствует случаю линейного упругого изотропного тела для задачи в плоском напряжённом состоянии, поэтому компоненты тензора коэффициентов упругости $\widehat{\text{\textbf{C}}}$ определим следующим образом:
-	\begin{gather*}
+		\varepsilon_{ij} = \dfrac{1}{2} \left( u_{i, j} + u_{j, i} \right), \quad i, j = \overline{1, 2}; \\
 		C_{ijkl} =
 		\dfrac{\nu E}{1 - \nu^2} \delta_{ij} \delta_{kl}
 		+
 		\dfrac{E}{2(1+\nu)} (\delta_{ik} \delta_{jl} + \delta_{il} \delta_{jk}), \quad
-		i, j, k, l = \overline{1, 2},
+		i, j, k, l = \overline{1, 2}.
 	\end{gather*}
-	где $E$ --- модуль Юнга; $\nu$ --- коэффициент Пуассона.
-
 	\quad\quad В расчётах будем использовать функцию нелокального влияния
 	\begin{gather*}
 		\varphi(|\boldsymbol{x} - \boldsymbol{x}'|) =
@@ -114,8 +118,8 @@
 
 
 \begin{frame}{Численный алгоритм решения}
-	\quad\quad К уравнению (\ref{EquilibriumEquation}) применим стандартную конечно-элементную процедуру аппроксимации и подставим в полученное уравнение (\ref{DefineSigma}). В итоге, перейдя к индексной форме записи, получим
-	\begin{multline*}
+	\quad\quad Решение будем искать методом конечных элементов
+	 \begin{multline*}
 		p_1 \iint\limits_S N_{n, i}^{(e)} C_{ijkl} \varepsilon_{kl} dS
 		+
 		p_2 \iint\limits_S
@@ -136,7 +140,7 @@
 		\left( p_1 \widehat{\text{\textbf{K}}}^{Loc} + p_2 \widehat{\text{\textbf{K}}}^{NonLoc} \right) \cdot \cdot \widehat{\text{\textbf{U}}} = \widehat{\text{\textbf{P}}} - \widehat{\text{\textbf{B}}}.
 	\end{gather*}
 	
-	\quad\quad Для простоты дальнейшего изложения введём тензор $\widehat{\text{\textbf{K}}}_{nm}^{(e)(e')}$, который по сути представляет из себя блок $2 \times 2$ матрицы элемента $(e)$. Коэффициенты блока имеют вид
+	\quad\quad Матрицу жёсткости будем ассамблировать из блоков $\widehat{\text{\textbf{K}}}_{nm}^{(e)(e')}$
 	\begin{gather*}
 		K_{nmij}^{(e)(e')} (\boldsymbol{x}, \boldsymbol{y}) = 
 		\delta_{np} \delta_{mq} C_{ikjl} 
@@ -193,59 +197,57 @@
 
 
 \begin{frame}
-	\quad\quad Аппроксимацию вложенного интеграла организуем относительно квадратурных узлов, что наглядно проиллюстрировано на рис. \ref{fig:ApproxSQ} и приводит нас к следующей формуле
-	\begin{multline}
-		\label{KNonLocApprox1}
-		\widehat{\text{\textbf{K}}}^{NonLoc} =
-		\sum\limits_{(e) \in S_h}
-		\sum\limits_{n \in I^{(e)}}
-		\sum\limits_{q \in Q^{(e)}}
-		w_q J_q^{(e)}
-		\times \\ \times
-		\sum\limits_{(e') \in S_h^{q}}
-		\sum\limits_{m' \in I^{(e')}}
-		\sum\limits_{q' \in Q^{(e')}}
-		w_{q'} \varphi(\boldsymbol{x}_q, \boldsymbol{x}_{q'}) \widehat{\text{\textbf{K}}}_{nm'}^{(e)(e')} (\boldsymbol{x}_q, \boldsymbol{x}_{q'}) J_{q'}^{(e')}.
-	\end{multline}	
+	Аппроксимируем нелокальную матрицу жёсткости
 	
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.35\textwidth]{pics/ApproxSQ.eps}
-		\caption{Аппроксимация зоны нелокального влияния относительно квадратурного узла сетки}
-		\label{fig:ApproxSQ}
-	\end{figure}
+	\begin{minipage}{0.49\textwidth}
+		\tiny
+		\begin{multline*}
+			\widehat{\text{\textbf{K}}}^{NonLoc} = \\
+			\sum\limits_{(e) \in S_h}
+			\sum\limits_{n \in I^{(e)}}
+			\sum\limits_{q \in Q^{(e)}}
+			w_q J_q^{(e)}
+			\sum\limits_{(e') \in S_h^{q}}
+			\sum\limits_{m' \in I^{(e')}} \\
+			\sum\limits_{q' \in Q^{(e')}}
+			w_{q'} \varphi(\boldsymbol{x}_q, \boldsymbol{x}_{q'}) \widehat{\text{\textbf{K}}}_{nm'}^{(e)(e')} (\boldsymbol{x}_q, \boldsymbol{x}_{q'}) J_{q'}^{(e')}.
+		\end{multline*}			
+		\bigskip
+		\begin{figure}[hb]
+			\centering
+			\includegraphics[width=0.71\textwidth]{pics/ApproxSQ.eps}
+			\caption{Квадратурная аппроксимация}
+		\end{figure}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.5\textwidth}
+		\tiny
+		\begin{multline}
+			\label{KNonLocApprox2}
+			\widehat{\text{\textbf{K}}}^{NonLoc} = \\
+			\sum\limits_{(e) \in S_h}
+			\sum\limits_{n \in I^{(e)}}
+			\sum\limits_{(e') \in S_h^{(e)}}
+			\sum\limits_{m' \in I^{(e')}}
+			\sum\limits_{q \in Q^{(e)}}
+			w_q J_q^{(e)}
+			\times \\ \times
+			\sum\limits_{q' \in Q^{(e')}}
+			w_{q'} \varphi(\boldsymbol{x}_q, \boldsymbol{x}_{q'}) \widehat{\text{\textbf{K}}}_{nm'}^{(e)(e')} (\boldsymbol{x}_q, \boldsymbol{x}_{q'}) J_{q'}^{(e')}.
+		\end{multline}	
+		\smallskip
+		\begin{figure}[hb]
+			\centering
+			\includegraphics[width=0.7\textwidth]{pics/ApproxS.eps}
+			\caption{Элементная аппроксимация}
+		\end{figure}
+	\end{minipage}
 \end{frame}
 
 
 
 \begin{frame}
-	\quad\quad Можно упростить аппроксимацию вложенного интеграла если проводить её относительно центров элементов. Таким образом радиус поиска следует брать несколько больше, чем радиус нелокального влияния. Тогда расчётная формула (\ref{KNonLocApprox1}) приобретает вид
-	\begin{multline}
-		\label{KNonLocApprox2}
-		\widehat{\text{\textbf{K}}}^{NonLoc} =
-		\sum\limits_{(e) \in S_h}
-		\sum\limits_{n \in I^{(e)}}
-		\sum\limits_{(e') \in S_h^{(e)}}
-		\sum\limits_{m' \in I^{(e')}}
-		\sum\limits_{q \in Q^{(e)}}
-		w_q J_q^{(e)}
-		\times \\ \times
-		\sum\limits_{q' \in Q^{(e')}}
-		w_{q'} \varphi(\boldsymbol{x}_q, \boldsymbol{x}_{q'}) \widehat{\text{\textbf{K}}}_{nm'}^{(e)(e')} (\boldsymbol{x}_q, \boldsymbol{x}_{q'}) J_{q'}^{(e')}.
-	\end{multline}
-	
-	\begin{figure}[h!]
-		\centering
-		\includegraphics[width=0.35\textwidth]{pics/ApproxS.eps}
-		\caption{Аппроксимация зоны нелокального влияния относительно центра конечного элемента}
-		\label{fig:ApproxS}
-	\end{figure}
-\end{frame}
-
-
-
-\begin{frame}
-	\quad\quad Формулы (\ref{KLocApprox1}) и (\ref{KNonLocApprox2}) не пригодны для параллельных и распределённых вычислений. Чтобы сделать их пригодными для каждого узла $n$ введём множество элементов $E^n$, которым он принадлежит. Тогда аппроксимацию локальной и нелокальной матриц жёсткости можно переписать в следующем виде
+	\quad\quad Формулы (\ref{KLocApprox1}) и (\ref{KNonLocApprox2}) не пригодны для параллельных и распределённых вычислений, поэтому поменяем порядок суммирования
 	\begin{gather*}
 		%\label{KLocApprox3}
 		\widehat{\text{\textbf{K}}}^{Loc} =
@@ -268,7 +270,6 @@
 		\sum\limits_{q' \in Q^{(e')}}
 		w_{q'} \varphi(\boldsymbol{x}_q, \boldsymbol{x}_{q'}) \widehat{\text{\textbf{K}}}_{nm'}^{(e)(e')} (\boldsymbol{x}_q, \boldsymbol{x}_{q'}) J_{q'}^{(e')}.
 	\end{multline*}
-	Важно отметить, что такой порядок знаков суммирования позволяет собирать матрицу жёсткости построчно, что открывает возможности для эффективного использования многопроцессорных систем.
 \end{frame}
 
 
@@ -278,44 +279,9 @@
 
 
 \begin{frame}{Результаты распараллеливания}
-	\quad\quad Проведём серию расчётов на гибридном вычислительном кластере К-10, где на каждом узле стоит по 128 Гб оперативной памяти и по два процессора Intel Xeon E5-2660. В качестве тестовой задачи возьмём задачу на области $S = [0,1] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из квадратичных серендиповых элементов. Получаемые матрицы имеют симметричную и разреженную структуру, поэтому будем хранить их в CSR формате. Для индексации будем использовать 64-битные числа, а для значений коэффициентов числа с плавающей точкой двойной точности. Подробность сетки, параметры поиска и результаты расчётов указаны в табл. \ref{Tab:OpenMP}.
-	\begin{table}[H]
-		\centering
-		\begin{tabular}{|c|c|c|c|c|c|}
-			\hline
-			Количество & Радиус  & Среднее & Требуемый & Время     & Время,     \\
-			конечных   & поиска  & число   & объём     & расчёта   & расчёта    \\
-			элементов  & соседей & соседей & памяти    & 1 поток   & 16 потоков \\
-			\hline
-			2500       & 0       & ---     & 3.7 Мб    & 0.031 с   & 0.017 с    \\
-			\hline
-			10000      & 0       & ---     & 15 Мб     & 0.152 с   & 0.046 с    \\
-			\hline
-			40000      & 0       & ---     & 59 Мб     & 1.280 с   & 0.207 с    \\
-			\hline
-			2500       & 0.1     & 66      & 63 Мб     & 4.385 с   & 0.307 с    \\
-			\hline
-			10000      & 0.1     & 281     & 916 Мб    & 76.65 с   & 5.102 с    \\
-			\hline
-			40000      & 0.1     & 1143    & 13.3 Гб   & 1265 с    & 82.32 с    \\
-			\hline
-			2500       & 0.2     & 257     & 210 Мб    & 17.40 с   & 1.166 с    \\
-			\hline
-			10000      & 0.2     & 1042    & 3.1 Гб    & 288.4 с   & 18.71 с    \\
-			\hline
-			40000      & 0.2     & 4194    & 47 Гб     & 4704 с   &  303.2 с    \\
-			\hline
-		\end{tabular}
-		\caption{Затрачиваемые вычислительные ресурсы на различных сетках и при различных радиусах поиска ближайших соседей}
-		\label{Tab:OpenMP}
-	\end{table}
-\end{frame}
-
-
-
-\begin{frame}
-	\begin{figure}[H]
-		\center{\includegraphics[width=0.7\textwidth]{pics/OpenMPAcceleration.eps}}
+	\quad\quad Была проведена серия расчётов на гибридном вычислительном кластере К-10, где на каждом узле стоит по 128 Гб оперативной памяти и по два процессора Intel Xeon E5-2660. Расчёт проводился на области $S = [0,1] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из квадратичных серендиповых элементов.
+	\begin{figure}[h]
+		\center{\includegraphics[width=0.6\textwidth]{pics/OpenMPAcceleration.eps}}
 		\caption{Ускорение времени сборки матрицы жёсткости при использовании технологии OpenMP на 16 потоках в сравнении со временем счёта на 1 потоке}
 		\label{fig:OpenMPAcceleration}
 	\end{figure}
@@ -324,83 +290,21 @@
 
 
 \begin{frame}
-	\begin{table}[!hb]
+	\quad\quad Для задачи на сетке состоящей из 40000 элементов с радиусом поиска $\widetilde{r} = 0.2$.
+	\begin{table}[h]
 		\centering
-		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
-		\hline
-		$N$   & $\tilde{r}$ & $V_1$  & $V_2$  & $V_3$   & $V_4$  & $t_{16}^1$, с & $t_{16}^2$, с & $t_{16}^3$, с &  $t_{16}^4$, с \\
-		\hline
-		10000 & 0.1 & 181 Мб & 173 Мб & 174 Мб & 388 Мб & 1.269         & 1.312         & 1.222         & 1.482 \\
-		\hline
-		10000 & 0.2 & 607 Мб & 582 Мб & 587 Мб  & 1.3 Гб & 4.736         & 4.508         & 4.474         & 5.376 \\
-		\hline
-		40000 & 0.1 & 2.5 Гб & 2.5 Гб & 2.5 Гб  & 5.8 Гб & 20.34         & 20.93         & 19.54        & 23.48 \\
-		\hline
-		40000 & 0.2 & 8.8 Гб & 8.7 Гб & 8.9 Гб & 20.6 Гб & 71.63         & 75.31         & 77.42        & 86.76 \\
-		\hline
-		\end{tabular}
-		\caption{Распределение объёмов данных и времени выполнения между процессами при балансировке объёмов вычислений}
-		\label{Tab:SpeedBalancing}
-	\end{table}
-	
-	\begin{figure}[!hb]
-		\begin{subfigure}{0.35\textwidth}
-	    	\includegraphics[width=\linewidth]{pics/TimeSpeedBalancing.eps}
-    		\caption{} \label{fig:TimeSpeedBalancing}
-  		\end{subfigure}
-		\begin{subfigure}{0.35\textwidth}
-		    \includegraphics[width=\linewidth]{pics/MemorySpeedBalancing.eps}
-		    \caption{} \label{fig:MemorySpeedBalancing}
-		\end{subfigure}
-	    \caption{Распределение времени счёта (a) и объёмов используемой оперативной памяти (b) при балансировке объёмов вычислений}
-	    \label{fig:SpeedBalancingHist}
-	\end{figure}
-\end{frame}
-
-
-
-\begin{frame}
-	\begin{table}[!htb]
-		\centering
-		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
-		\hline
-		$N$   & $\tilde{r}$ & $V_1$  & $V_2$  & $V_3$  & $V_4$  & $t_{16}^1$, с & $t_{16}^2$, с & $t_{16}^3$, с & $t_{16}^4$, с \\
-		\hline
-		10000 & 0.1 & 225 Мб & 229 Мб & 233 Мб & 229 Мб & 1.675         & 1.786         & 1.123        & 0.887 \\
-		\hline
-		10000 & 0.2 & 768 Мб & 782 Мб & 797 Мб & 782 Мб & 5.704         & 6.029         & 3.918        & 3.159 \\
-		\hline
-		40000 & 0.1 & 3.3 Гб & 3.3 Гб & 3.4 Мб & 3.3 Гб & 26.74         & 27.96         & 16.91         & 13.70 \\
-		\hline
-		40000 & 0.2 & 11.6 Гб & 11.7 Гб & 11.9 Гб & 11.8 Гб & 95.76     & 99.08         & 60.50         & 50.03  \\
-		\hline
-		\end{tabular}
-		\caption{Распределение объёмов данных и времени выполнения между процессами при балансировке количества элементов матрицы}
-		\label{Tab:MemoryBalancing}
-	\end{table}
-
-	\begin{figure}[!hb]
-    	\begin{subfigure}{0.35\textwidth}
-	    	\includegraphics[width=\linewidth]{pics/TimeMemoryBalancing.eps}
-    		\caption{} \label{fig:TimeMemoryBalancing}
-    	\end{subfigure}
-  		\begin{subfigure}{0.35\textwidth}
+		\newcolumntype{C}{>{\centering\arraybackslash} m{3.5cm}}
+		\begin{tabular}{cCC}
+			Балансировка & Распределение времени & Распределение памяти \\
+			объёмов \\
+			вычислений &
+			\includegraphics[width=\linewidth]{pics/TimeSpeedBalancing.eps} &
+			\includegraphics[width=\linewidth]{pics/MemorySpeedBalancing.eps} \\
+			данных &
+			\includegraphics[width=\linewidth]{pics/TimeMemoryBalancing.eps} &
     		\includegraphics[width=\linewidth]{pics/MemoryMemoryBalancing.eps}
-    		\caption{} \label{fig:MemoryMemoryBalancing}
-  		\end{subfigure}
-  		\caption{Распределение времени счёта (a) и объёмов используемой оперативной памяти (b) при балансировке количества элементов матрицы}
-  		\label{fig:MemoryBalancingHist}
-	\end{figure}
-\end{frame}
-
-
-
-\begin{frame}
-	\begin{figure}[!htb]
-		\center{\includegraphics[width=0.7\textwidth]{pics/MPIAcceleration.eps}}
-		\caption{Ускорение времени сборки матрицы жёсткости при использовании технологии MPI, где speed означает балансировку объёмов вычислений, а mem балансировку объёмов памяти}
-		\label{fig:MPIAcceleration}
-	\end{figure}
+    	\end{tabular}
+	\end{table}
 \end{frame}
 
 
@@ -410,7 +314,7 @@
 
 
 \begin{frame}{Принцип Сен-Венана}	
-	\quad\quad Рассмотрим область $S = [0,10] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из 64000 квадратичных серендиповых элементов. Поставим граничные условия
+	\quad\quad Область $S = [0,10] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из 64000 квадратичных серендиповых элементов. Граничные условия
 	\begin{gather*}
 		\boldsymbol{\overline{\sigma}} \cdot \boldsymbol{n} |_{\overline{x}_1 = 0} = -f(\overline{x}_2),
 		\quad
@@ -448,6 +352,39 @@
 
 
 \begin{frame}
+	\begin{figure}[!h]
+    	\begin{subfigure}{0.4\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/LongRectStress11VarFx205.eps}
+    		\caption{} \label{fig:LongRectStress11VarFx205}
+    	\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/LongRectStress11VarFx200.eps}
+    		\caption{} \label{fig:LongRectStress11VarFx200}
+  		\end{subfigure}
+  		\vspace{-0.5cm}
+  		\caption{Распределение напряжений $\overline{\sigma}_{11}$ в сечении (a) $\overline{x}_2 = 0.5$; (b) $\overline{x}_2 = 0$}
+  		\label{fig:LongRectStress11VarF}
+	\end{figure}
+	\vspace{-0.5cm}
+	\begin{figure}[!h]
+    	\begin{subfigure}{0.4\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/LongRectStress11VarP.eps}
+    		\caption{} \label{fig:LongRectStress11VarP}
+    	\end{subfigure}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/LongRectStress11VarR.eps}
+    		\caption{} \label{fig:LongRectStress11VarR}
+  		\end{subfigure}
+  		\vspace{-0.5cm}
+  		\caption{Распределение напряжения $\overline{\sigma}_{11}$ в сечении $\overline{x}_1 = 5$ при вариации (a) $p_1$; (b) $r$}
+  		\label{fig:LongRectStress11}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{comment}
+\begin{frame}
 	\quad\quad На рис. \ref{fig:LongRectStress11VarF} изображены распределения напряжения $\overline{\sigma}_{11}$ вдоль оси нагружения в различных сечениях. Несмотря на различный характер нагружений, при удалении от них напряжение принимает одинаковую форму, которая в нелокальной постановке, в отличие от классической, не является константной вдоль оси $\overline{x}_2$.
 
 	\begin{figure}[!h]
@@ -483,6 +420,7 @@
 	
 	Важно отметить, что равнодействующая напряжения $\overline{\sigma}_{11}$ совпадает с прикладываемым нагружением, что говорит нам о выполнении принципа Сен-Венана.
 \end{frame}
+\end{comment}
 
 
 
@@ -491,7 +429,7 @@
 
 
 \begin{frame}{Т-образная область}
-	\quad\quad Теперь рассмотрим Т-образную область $S \subset [0,1] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из 30000 квадратичных серендиповых элементов. Поставим следующие граничные условия
+	\quad\quad Область $S \subset [0,1] \times [0,1]$ --- Т-образная область с введённой на ней равномерной сеткой $S_h$, состоящей из 30000 квадратичных серендиповых элементов. Граничные условия
 	\begin{gather*}
 		\boldsymbol{\overline{u}} |_{\overline{x}_2 = 1} = 0,
 		\quad
@@ -590,29 +528,38 @@
 
 
 
-\begin{frame}
+\section{Задача Кирша}
+
+
+
+\begin{frame}{Задача Кирша}
+	\vspace{-0.15cm}
+	\begin{figure}[!h]
+		\center{\includegraphics[width=0.3\textwidth]{pics/EllipticalCut.eps}}
+		\caption{Область с эллиптическим вырезом}
+		\label{fig:EllipticalCut}
+	\end{figure}
+
 	\begin{figure}[!hb]
-    	\begin{subfigure}{0.49\textwidth}
-	    	\includegraphics[width=\linewidth]{pics/presentation/AndreevSigma.png}
+    	\begin{subfigure}{0.4\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/circle/CDCircleEps.eps}
 	    	\vspace{-0.5cm}
-    		\caption{} \label{fig:AndreevSigma}
+    		\caption{} \label{fig:CDCircleEps}
     	\end{subfigure}
-  		\begin{subfigure}{0.49\textwidth}
-    		\includegraphics[width=\linewidth]{pics/T/TSigmaNonlocP12R015.png}
+  		\begin{subfigure}{0.4\textwidth}
+    		\includegraphics[width=\linewidth]{pics/circle/CDCircleSigma.eps}
     		\vspace{-0.5cm}
-    		\caption{} \label{fig:TSigmaNonlocP12R015Comp}
+    		\caption{} \label{fig:CDCircleSigma}
   		\end{subfigure}
-  		\caption{Сравнение распределения напряжения в эксперименте (a) и численном расчёте (b) при $p_1 = 1/2$ и $r = 0.15$}
-  		\label{fig:ComparsionSigma}
+  		\vspace{-0.5cm}
+  		\caption{Распределение (a) деформации $\overline{\varepsilon}_{11}$ и (b) напряжения $\overline{\sigma}_{11}$ на дуге CD}
+  		\label{fig:CDCircle}
 	\end{figure}
 \end{frame}
 
 
 
-\section{Задача Кирша}
-
-
-
+\begin{comment}
 \begin{frame}{Задача Кирша}
 	\quad\quad Рассмотрим задачу Кирша на области $S \subset [-1, 1] \times [-1, 1]$ с обобщением на эллиптические вырезы, со следующими граничными условиями
 	\begin{gather*}
@@ -652,50 +599,7 @@
   		\label{fig:CDCircle}
 	\end{figure}
 \end{frame}
-
-
-
-\begin{frame}
-	\quad\quad Согласно теоретическим выкладкам, в классическом случае максимальный уровень напряжения в задаче Кирша будет находиться в точка B и D и равен
-	\begin{gather*}
-		\sigma_{11}^{max} \approx \left( 1 + 2 \dfrac{R_2}{R_1} \right) \widetilde{\sigma}.
-	\end{gather*}
-	Однако в нелокальном случае возникает некоторый множитель $\alpha$, который зависит от весовых параметров и преобразует эту формулу
-	\begin{gather*}
-		\sigma_{11}^{max} \approx \alpha(p_1) \left( 1 + 2 \dfrac{R_2}{R_1} \right) \widetilde{\sigma}.
-	\end{gather*}
-
-	\begin{table}[!h]
-		\centering
-		\begin{tabular}{|c|c|c|c|c|}
-			\hline
-			Длина      & \multicolumn{4}{c|}{Значение весового параметра} \\
-			\cline{2-5}
-			полуоси $R_1$ & $p_1 = 1$ & $p_1 = 2/3$ & $p_1 = 1/2$ & $p_1 = 1/3$ \\
-			\hline
-			$R_2$         & 3.4       & 2.8         & 2.5         & 2.2 \\
-			\hline
-			$2/3 R_2$     & 4.4       & 3.7         & 3.3         & 2.9 \\
-			\hline
-			$1/2 R_2$     & 5.4       & 4.7         & 4.1         & 3.6 \\
-			\hline
-			$1/3 R_2$     & 7.6       & 6.5         & 5.7         & 5  \\
-			\hline
-		\end{tabular}
-		\caption{Пиковые значения напряжения $\overline{\sigma}_{11}$ при различных длинах полуоси $R_1$ и весовых параметрах. В нелокальном случае считаем $r = 0.1$}
-		\label{Tab:MaxStress}
-	\end{table}
-\end{frame}
-
-
-
-\begin{frame}
-	\begin{figure}[!h]
-		\center{\includegraphics[width=0.8\textwidth]{pics/MaxSigma.eps}}
-		\caption{Пиковые значения напряжения $\overline{\sigma}_{11}$ при различных весовых параметрах и соотношениях длин полуосей}
-		\label{fig:MaxSigma}
-	\end{figure}
-\end{frame}
+\end{comment}
 
 
 
@@ -705,18 +609,150 @@
 
 \begin{frame}{Заключение}
 	\begin{itemize}
-		\item Был сформулирован параллельный и распределённый алгоритм сборки матрицы жёсткости для задач нелокальной упругости.
+		\item Разработан параллельный и распределённый алгоритм сборки матрицы жёсткости для задач нелокальной упругости.
 		
 		\item Рассмотрена масштабируемость полученного алгоритма.
 		
 		\item Проведено исследование применимости принципа Сен-Венана на примере растяжения вытянутой пластины.
 		
-		\item Исследованы решения в областях со ступенчатыми переходами и проведены сравнения с экспериментами.
+		\item Исследованы решения в областях со ступенчатыми переходами и проведены сравнения с экспериментальными данными.
 		
-		\item Исследованы решения в областях с эллиптическими вырезами и проведены сравнения с теоретическими исследованиями.
+		\item Исследованы решения в областях с эллиптическими вырезами.
 	\end{itemize}
+	
+	\bigskip
+	
+	\begin{center}
+		\Huge \textbf{СПАСИБО ЗА ВНИМАНИЕ!}
+	\end{center}
 \end{frame}
 
 
+
+
+
+
+
+
+
+
+
+\begin{comment}
+\begin{frame}{Результаты распараллеливания}
+	\quad\quad Проведём серию расчётов на гибридном вычислительном кластере К-10, где на каждом узле стоит по 128 Гб оперативной памяти и по два процессора Intel Xeon E5-2660. В качестве тестовой задачи возьмём задачу на области $S = [0,1] \times [0,1]$ с введённой на ней равномерной сеткой $S_h$, состоящей из квадратичных серендиповых элементов. Получаемые матрицы имеют симметричную и разреженную структуру, поэтому будем хранить их в CSR формате. Для индексации будем использовать 64-битные числа, а для значений коэффициентов числа с плавающей точкой двойной точности. Подробность сетки, параметры поиска и результаты расчётов указаны в табл. \ref{Tab:OpenMP}.
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			Количество & Радиус  & Среднее & Требуемый & Время     & Время,     \\
+			конечных   & поиска  & число   & объём     & расчёта   & расчёта    \\
+			элементов  & соседей & соседей & памяти    & 1 поток   & 16 потоков \\
+			\hline
+			2500       & 0       & ---     & 3.7 Мб    & 0.031 с   & 0.017 с    \\
+			\hline
+			10000      & 0       & ---     & 15 Мб     & 0.152 с   & 0.046 с    \\
+			\hline
+			40000      & 0       & ---     & 59 Мб     & 1.280 с   & 0.207 с    \\
+			\hline
+			2500       & 0.1     & 66      & 63 Мб     & 4.385 с   & 0.307 с    \\
+			\hline
+			10000      & 0.1     & 281     & 916 Мб    & 76.65 с   & 5.102 с    \\
+			\hline
+			40000      & 0.1     & 1143    & 13.3 Гб   & 1265 с    & 82.32 с    \\
+			\hline
+			2500       & 0.2     & 257     & 210 Мб    & 17.40 с   & 1.166 с    \\
+			\hline
+			10000      & 0.2     & 1042    & 3.1 Гб    & 288.4 с   & 18.71 с    \\
+			\hline
+			40000      & 0.2     & 4194    & 47 Гб     & 4704 с   &  303.2 с    \\
+			\hline
+		\end{tabular}
+		\caption{Затрачиваемые вычислительные ресурсы на различных сетках и при различных радиусах поиска ближайших соседей}
+		\label{Tab:OpenMP}
+	\end{table}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{table}[!hb]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		$N$   & $\tilde{r}$ & $V_1$  & $V_2$  & $V_3$   & $V_4$  & $t_{16}^1$, с & $t_{16}^2$, с & $t_{16}^3$, с &  $t_{16}^4$, с \\
+		\hline
+		10000 & 0.1 & 181 Мб & 173 Мб & 174 Мб & 388 Мб & 1.269         & 1.312         & 1.222         & 1.482 \\
+		\hline
+		10000 & 0.2 & 607 Мб & 582 Мб & 587 Мб  & 1.3 Гб & 4.736         & 4.508         & 4.474         & 5.376 \\
+		\hline
+		40000 & 0.1 & 2.5 Гб & 2.5 Гб & 2.5 Гб  & 5.8 Гб & 20.34         & 20.93         & 19.54        & 23.48 \\
+		\hline
+		40000 & 0.2 & 8.8 Гб & 8.7 Гб & 8.9 Гб & 20.6 Гб & 71.63         & 75.31         & 77.42        & 86.76 \\
+		\hline
+		\end{tabular}
+		\caption{Распределение объёмов данных и времени выполнения между процессами при балансировке объёмов вычислений}
+		\label{Tab:SpeedBalancing}
+	\end{table}
+	
+	\begin{figure}[!hb]
+		\begin{subfigure}{0.35\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/TimeSpeedBalancing.eps}
+    		\caption{} \label{fig:TimeSpeedBalancing}
+  		\end{subfigure}
+		\begin{subfigure}{0.35\textwidth}
+		    \includegraphics[width=\linewidth]{pics/MemorySpeedBalancing.eps}
+		    \caption{} \label{fig:MemorySpeedBalancing}
+		\end{subfigure}
+	    \caption{Распределение времени счёта (a) и объёмов используемой оперативной памяти (b) при балансировке объёмов вычислений}
+	    \label{fig:SpeedBalancingHist}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{table}[!htb]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		$N$   & $\tilde{r}$ & $V_1$  & $V_2$  & $V_3$  & $V_4$  & $t_{16}^1$, с & $t_{16}^2$, с & $t_{16}^3$, с & $t_{16}^4$, с \\
+		\hline
+		10000 & 0.1 & 225 Мб & 229 Мб & 233 Мб & 229 Мб & 1.675         & 1.786         & 1.123        & 0.887 \\
+		\hline
+		10000 & 0.2 & 768 Мб & 782 Мб & 797 Мб & 782 Мб & 5.704         & 6.029         & 3.918        & 3.159 \\
+		\hline
+		40000 & 0.1 & 3.3 Гб & 3.3 Гб & 3.4 Мб & 3.3 Гб & 26.74         & 27.96         & 16.91         & 13.70 \\
+		\hline
+		40000 & 0.2 & 11.6 Гб & 11.7 Гб & 11.9 Гб & 11.8 Гб & 95.76     & 99.08         & 60.50         & 50.03  \\
+		\hline
+		\end{tabular}
+		\caption{Распределение объёмов данных и времени выполнения между процессами при балансировке количества элементов матрицы}
+		\label{Tab:MemoryBalancing}
+	\end{table}
+
+	\begin{figure}[!hb]
+    	\begin{subfigure}{0.35\textwidth}
+	    	\includegraphics[width=\linewidth]{pics/TimeMemoryBalancing.eps}
+    		\caption{} \label{fig:TimeMemoryBalancing}
+    	\end{subfigure}
+  		\begin{subfigure}{0.35\textwidth}
+    		\includegraphics[width=\linewidth]{pics/MemoryMemoryBalancing.eps}
+    		\caption{} \label{fig:MemoryMemoryBalancing}
+  		\end{subfigure}
+  		\caption{Распределение времени счёта (a) и объёмов используемой оперативной памяти (b) при балансировке количества элементов матрицы}
+  		\label{fig:MemoryBalancingHist}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{figure}[!htb]
+		\center{\includegraphics[width=0.7\textwidth]{pics/MPIAcceleration.eps}}
+		\caption{Ускорение времени сборки матрицы жёсткости при использовании технологии MPI, где speed означает балансировку объёмов вычислений, а mem балансировку объёмов памяти}
+		\label{fig:MPIAcceleration}
+	\end{figure}
+\end{frame}
+\end{comment}
 
 \end{document}
